@@ -18,7 +18,9 @@
         </activity>
         <activity android:name=".SessionRecordingMenu" />
         <activity android:name=".OptionsMenu" />
-        <activity android:name=".StartOrEndSessionMenu"></activity>
+        <activity android:name=".StartOrEndSessionMenu" />
+        <activity android:name=".SessionInformationMenu" />
+        <activity android:name=".SessionViewingMenu"></activity>
     </application>
 
 </manifest>
