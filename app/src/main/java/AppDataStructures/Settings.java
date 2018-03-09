@@ -5,4 +5,18 @@ package AppDataStructures;
  */
 
 public class Settings {
+    public boolean is24HTime;
+    public boolean isDarkTheme;
+    public boolean isMetric;
+
+    public Settings()
+    {
+
+    }
+    public Settings(boolean time, boolean theme, boolean metric)
+    {
+        is24HTime = time;
+        isDarkTheme = theme;
+        isMetric = metric;
+    }
 }
