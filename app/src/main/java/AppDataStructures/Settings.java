@@ -11,7 +11,9 @@ public class Settings {
 
     public Settings()
     {
-
+        is24HTime = false;
+        isDarkTheme = false;
+        isMetric = false;
     }
     public Settings(boolean time, boolean theme, boolean metric)
     {
