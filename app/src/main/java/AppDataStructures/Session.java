@@ -10,4 +10,10 @@ public class Session {
     public sessionType sType;
     public Calendar StartTime;
     public boolean isFinished;
+
+    public Session()
+    {
+        StartTime = Calendar.getInstance();
+        isFinished = false;
+    }
 }
