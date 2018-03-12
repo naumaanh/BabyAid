@@ -4,5 +4,5 @@ package AppDataStructures;
  * Created by aaronbatch on 3/5/18.
  */
 
-public class WasteSession extends Session {
+public class WasteSession {
 }
