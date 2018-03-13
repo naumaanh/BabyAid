@@ -15,13 +15,38 @@ public class Child
     Calendar dateOfBirth; // String var representing the child's date of birth
     ArrayList<Session> sessionArray; // Array list which will hold all of the sessions for a child
 
-    // Constructor for child class
+    /*
+
+       SINGLETON CODE (BELOW)
+
+     */
+
+    private static Child child; // Static child object (this will be the only child object to be created)
+
+    // Function which returns the static child object (uses constructor thst initializes the child to default values)
+    public static Child getChild()
+    {
+        if(child == null)
+        {
+            child = new Child();
+        }
+
+        return child;
+    }
+
+    /*
+
+        NORMAL OBJECT CODE (BELOW)
+
+     */
+
+    // Constructor for child class; This class is private in order to stop someone from creating a second instance of this object
     // var "fName" represents the first name of the child
     // var "lName" represents the last name of the child
     // var "yearOfBirth" represents the four digit year that the child was born
     // var "monthOfBirth" represents the integer month that the child was born in (starts from zero)
     // var "dayOfBirth" represents the integer day that the child was born on
-    public Child(String fName, String lName, Integer yearOfBirth, Integer monthOfBirth, Integer dayOfBirth)
+    private Child(String fName, String lName, Integer yearOfBirth, Integer monthOfBirth, Integer dayOfBirth)
     {
         // Set name variables
         firstName = fName;
@@ -29,6 +54,18 @@ public class Child
 
         // Set the date of birth variable
         setDateOfBirth(yearOfBirth, monthOfBirth, dayOfBirth);
+    }
+
+    // Constructor for child class; This class takes no arguments and fills the variables of the child with mock data to be filled in later
+    // This class is private in order to stop someone from creating a second instance of this object
+    private Child()
+    {
+        // Give a default name (to be filled out later)
+        firstName = "John";
+        lastName = "Doe";
+
+        // Set the birth date variable to a default date (to be filled out later)
+        setDateOfBirth(2002, 2, 22);
     }
 
     // Function which returns the first name of child
@@ -79,7 +116,9 @@ public class Child
     // Main function created for testing purposes
     public static void main(String[] args)
     {
-        Child mockChild = new Child("Aaron", "Batch", 1996, 7, 26);
+        //Child mockChild = new Child("Aaron", "Batch", 1996, 7, 26);
+
+        Child mockChild = Child.getChild();
 
         System.out.println("First name before change: " + mockChild.getFirstName());
 
@@ -108,5 +147,9 @@ public class Child
         cal = mockChild.getDateOfBirth();
 
         System.out.println("DOB after change: " + cal.getTime());
+
+        Child mockChild2 = Child.getChild();
+
+        System.out.println("Name in child 2: " + mockChild2.getFirstName());
     }
 }
