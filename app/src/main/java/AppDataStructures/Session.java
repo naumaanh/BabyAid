@@ -1,33 +1,13 @@
 package AppDataStructures;
 
 import java.util.Calendar;
-<<<<<<< HEAD
-=======
 import java.util.Locale;
 import java.util.TimeZone;
->>>>>>> master
+
 
 /**
  * Created by aaronbatch on 3/5/18.
  */
-
-<<<<<<< HEAD
-public class Session {
-    public sessionType sType;
-    public Calendar StartTime;
-    public boolean isFinished;
-
-    public Session()
-    {
-        StartTime = Calendar.getInstance();
-        isFinished = false;
-    }
-=======
-// Enum class which holds all of the possible enum values for a session type
-enum SessionType
-{
-    FEEDING_SESSION, SLEEPING_SESSION, MEDICATION_SESSION, WASTE_SESSION;
-}
 
 // Enum class which holds all of the different time variables that we want
 // START and END vars denote which time variables that we want to adjust or set (START = startTime, END = endTime)
@@ -41,11 +21,11 @@ enum TimeVars
 // Done, but i still need to test each function
 public class Session
 {
-    Calendar startTime; // Var representing the start time of a session
+    public Calendar startTime; // Var representing the start time of a session
     Calendar endTime; // Var representing the end time of a session
-    Boolean isFinished; // Boolean representing whether the session is finished or still ongoing
+    public Boolean isFinished; // Boolean representing whether the session is finished or still ongoing
     String extraComments; // String var which will hold extra comments that the user said about the session
-    SessionType sessionType; // Enum variable which will hold what kind of session we are dealing with
+    public SessionType sessionType; // Enum variable which will hold what kind of session we are dealing with
 
     // Constructor for the session class
     // enum var "ST" represents the session type that you want the session to be
@@ -230,5 +210,4 @@ public class Session
 
         System.out.println(testSession.getComment());
     }
->>>>>>> master
 }

@@ -46,16 +46,16 @@ public class SessionViewingMenu extends AppCompatActivity
         {
             buttons.add(i, new Button(this));
             buttons.get(i).setId(i);
-            switch (dummy.get(i).sType)
+            switch (dummy.get(i).sessionType)
             {
-                case WASTE:
+                case WASTE_SESSION:
                     if (dummy.get(i).isFinished)
                     {
-                        buttons.get(i).setText("Waste Session " + sdFormat.format(dummy.get(i).StartTime.getTime()) + " FINISHED");
+                        buttons.get(i).setText("Waste Session " + sdFormat.format(dummy.get(i).startTime.getTime()) + " FINISHED");
                     }
                     else
                     {
-                        buttons.get(i).setText("Waste Session " + sdFormat.format(dummy.get(i).StartTime.getTime()) + " ONGOING");
+                        buttons.get(i).setText("Waste Session " + sdFormat.format(dummy.get(i).startTime.getTime()) + " ONGOING");
                     }
                     sessionList.addView(buttons.get(i), params);
                     buttons.get(i).setOnClickListener(new View.OnClickListener() {
@@ -74,14 +74,14 @@ public class SessionViewingMenu extends AppCompatActivity
                         }
                     });
                     break;
-                case MEDICAL:
+                case MEDICATION_SESSION:
                     if (dummy.get(i).isFinished)
                     {
-                        buttons.get(i).setText("Medicine Session " + sdFormat.format(dummy.get(i).StartTime.getTime()) + " FINISHED");
+                        buttons.get(i).setText("Medicine Session " + sdFormat.format(dummy.get(i).startTime.getTime()) + " FINISHED");
                     }
                     else
                     {
-                        buttons.get(i).setText("Medicine Session " + sdFormat.format(dummy.get(i).StartTime.getTime()) + " ONGOING");
+                        buttons.get(i).setText("Medicine Session " + sdFormat.format(dummy.get(i).startTime.getTime()) + " ONGOING");
                     }
                     sessionList.addView(buttons.get(i), params);
                     buttons.get(i).setOnClickListener(new View.OnClickListener() {
@@ -100,14 +100,14 @@ public class SessionViewingMenu extends AppCompatActivity
                         }
                     });
                     break;
-                case SLEEPING:
+                case SLEEPING_SESSION:
                     if (dummy.get(i).isFinished)
                     {
-                        buttons.get(i).setText("Sleeping Session " + sdFormat.format(dummy.get(i).StartTime.getTime()) + " FINISHED");
+                        buttons.get(i).setText("Sleeping Session " + sdFormat.format(dummy.get(i).startTime.getTime()) + " FINISHED");
                     }
                     else
                     {
-                        buttons.get(i).setText("Sleeping Session " + sdFormat.format(dummy.get(i).StartTime.getTime()) + " ONGOING");
+                        buttons.get(i).setText("Sleeping Session " + sdFormat.format(dummy.get(i).startTime.getTime()) + " ONGOING");
                     }
                     sessionList.addView(buttons.get(i), params);
                     buttons.get(i).setOnClickListener(new View.OnClickListener() {
@@ -126,14 +126,14 @@ public class SessionViewingMenu extends AppCompatActivity
                         }
                     });
                     break;
-                case FEEDING:
+                case FEEDING_SESSION:
                     if (dummy.get(i).isFinished)
                     {
-                        buttons.get(i).setText("Feeding Session " + sdFormat.format(dummy.get(i).StartTime.getTime()) + " FINISHED");
+                        buttons.get(i).setText("Feeding Session " + sdFormat.format(dummy.get(i).startTime.getTime()) + " FINISHED");
                     }
                     else
                     {
-                        buttons.get(i).setText("Feeding Session " + sdFormat.format(dummy.get(i).StartTime.getTime()) + " ONGOING");
+                        buttons.get(i).setText("Feeding Session " + sdFormat.format(dummy.get(i).startTime.getTime()) + " ONGOING");
                     }
                     sessionList.addView(buttons.get(i), params);
                     buttons.get(i).setOnClickListener(new View.OnClickListener() {
