@@ -68,7 +68,9 @@ public class SessionViewingMenu extends AppCompatActivity
                             }
                             else
                             {
-                                goToStartEndSessionMenuIntent.putExtra("Session_Type", "Waste_IP " + view.getId());
+                                goToStartEndSessionMenuIntent.putExtra("SessionType","Waste");
+                                goToStartEndSessionMenuIntent.putExtra("MenuName", "SessionViewingMenu");
+                                goToStartEndSessionMenuIntent.putExtra("index", view.getId());
                                 startActivity(goToStartEndSessionMenuIntent);
                             }
                         }
@@ -94,7 +96,9 @@ public class SessionViewingMenu extends AppCompatActivity
                             }
                             else
                             {
-                                goToStartEndSessionMenuIntent.putExtra("Session_Type", "Med_IP " + view.getId());
+                                goToStartEndSessionMenuIntent.putExtra("SessionType","Medication");
+                                goToStartEndSessionMenuIntent.putExtra("MenuName", "SessionViewingMenu");
+                                goToStartEndSessionMenuIntent.putExtra("index", view.getId());
                                 startActivity(goToStartEndSessionMenuIntent);
                             }
                         }
@@ -120,7 +124,9 @@ public class SessionViewingMenu extends AppCompatActivity
                             }
                             else
                             {
-                                goToStartEndSessionMenuIntent.putExtra("Session_Type", "Sleep_IP " + view.getId());
+                                goToStartEndSessionMenuIntent.putExtra("SessionType","Sleeping");
+                                goToStartEndSessionMenuIntent.putExtra("MenuName", "SessionViewingMenu");
+                                goToStartEndSessionMenuIntent.putExtra("index", view.getId());
                                 startActivity(goToStartEndSessionMenuIntent);
                             }
                         }
@@ -146,7 +152,9 @@ public class SessionViewingMenu extends AppCompatActivity
                             }
                             else
                             {
-                                goToStartEndSessionMenuIntent.putExtra("Session_Type", "Feed_IP " + view.getId());
+                                goToStartEndSessionMenuIntent.putExtra("SessionType","Feeding");
+                                goToStartEndSessionMenuIntent.putExtra("MenuName", "SessionViewingMenu");
+                                goToStartEndSessionMenuIntent.putExtra("index", view.getId());
                                 startActivity(goToStartEndSessionMenuIntent);
                             }
                         }
