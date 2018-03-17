@@ -23,7 +23,7 @@ public class SessionRecordingMenu extends AppCompatActivity
         setContentView(R.layout.activity_session_recording_menu);
 
         // Get references to buttons on the activity view
-        backBtn = (Button) findViewById(R.id.backBtn);
+        backBtn = (Button) findViewById(R.id.backBtn_SOESM);
         feedingSessionBtn = (Button) findViewById(R.id.feedingSessionBtn);
         sleepingSessionBtn = (Button) findViewById(R.id.sleepingSessionBtn);
         wasteSessionBtn = (Button) findViewById(R.id.wasteSessionBtn);
@@ -31,6 +31,9 @@ public class SessionRecordingMenu extends AppCompatActivity
 
         // Create intent for going to the StartOrEndSessionMenu
         final Intent goToStartEndSessionMenuIntent = new Intent(getApplicationContext(), StartOrEndSessionMenu.class);
+
+        // Send the name of the current menu the user is on
+        goToStartEndSessionMenuIntent.putExtra("MenuName", "SessionRecordingMenu");
 
         // When backButton is tapped, send the user to the previous view that they were on
         backBtn.setOnClickListener(new View.OnClickListener()
@@ -49,7 +52,7 @@ public class SessionRecordingMenu extends AppCompatActivity
             public void onClick(View view)
             {
                 // Send what type of session the user chose to the next menu
-                goToStartEndSessionMenuIntent.putExtra("Session_Type", "FEEDING_SESSION");
+                goToStartEndSessionMenuIntent.putExtra("SessionType", "Feeding");
 
                 // Go to the menu the user chose
                 startActivity(goToStartEndSessionMenuIntent);
@@ -63,7 +66,7 @@ public class SessionRecordingMenu extends AppCompatActivity
             public void onClick(View view)
             {
                 // Send what type of session the user chose to the next menu
-                goToStartEndSessionMenuIntent.putExtra("Session_Type", "SLEEPING_SESSION");
+                goToStartEndSessionMenuIntent.putExtra("SessionType", "Sleeping");
 
                 // Go to the menu the user chose
                 startActivity(goToStartEndSessionMenuIntent);
@@ -77,7 +80,7 @@ public class SessionRecordingMenu extends AppCompatActivity
             public void onClick(View view)
             {
                 // Send what type of session the user chose to the next menu
-                goToStartEndSessionMenuIntent.putExtra("Session_Type", "WASTE_SESSION");
+                goToStartEndSessionMenuIntent.putExtra("SessionType", "Waste");
 
                 // Go to the menu the user chose
                 startActivity(goToStartEndSessionMenuIntent);
@@ -91,7 +94,7 @@ public class SessionRecordingMenu extends AppCompatActivity
             public void onClick(View view)
             {
                 // Send what type of session the user chose to the next menu
-                goToStartEndSessionMenuIntent.putExtra("Session_Type", "MEDICATION_SESSION");
+                goToStartEndSessionMenuIntent.putExtra("SessionType", "Medication");
 
                 // Go to the menu the user chose
                 startActivity(goToStartEndSessionMenuIntent);

@@ -13,7 +13,7 @@ public class Child
     String firstName; // String var representing the child's first name
     String lastName; // String var representing the child's last name
     Calendar dateOfBirth; // String var representing the child's date of birth
-    ArrayList<Session> sessionArray; // Array list which will hold all of the sessions for a child
+    public ArrayList<Session> sessionArray; // Array list which will hold all of the sessions for a child
 
     /*
 
