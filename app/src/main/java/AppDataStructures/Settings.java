@@ -9,16 +9,19 @@ public class Settings {
     public boolean isDarkTheme;
     public boolean isMetric;
 
-    public Settings()
-    {
+    public static Settings instance;
+    private Settings() {
         is24HTime = false;
         isDarkTheme = false;
         isMetric = false;
     }
-    public Settings(boolean time, boolean theme, boolean metric)
+
+    public static Settings getInstance()
     {
-        is24HTime = time;
-        isDarkTheme = theme;
-        isMetric = metric;
+        if (instance == null)
+        {
+            instance = new Settings();
+        }
+        return instance;
     }
 }

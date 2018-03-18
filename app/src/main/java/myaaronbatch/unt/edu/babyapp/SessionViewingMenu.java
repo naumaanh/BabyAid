@@ -8,6 +8,8 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+
+import AppDataStructures.Child;
 import AppDataStructures.Session;
 import AppDataStructures.Settings;
 
@@ -19,11 +21,16 @@ public class SessionViewingMenu extends AppCompatActivity
     LinearLayout sessionList;
     LinearLayout.LayoutParams params;
     Settings blank;
+    Child kid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_session_viewing_menu);
+
+        blank = Settings.getInstance();
+        kid = Child.getChild();
+        dummy = kid.sessionArray;
 
         SimpleDateFormat sdFormat;
         if (blank.is24HTime)
