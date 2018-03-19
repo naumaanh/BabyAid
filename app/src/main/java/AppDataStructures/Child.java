@@ -13,7 +13,7 @@ public class Child
     String firstName; // String var representing the child's first name
     String lastName; // String var representing the child's last name
     Calendar dateOfBirth; // String var representing the child's date of birth
-    ArrayList<Session> sessionArray; // Array list which will hold all of the sessions for a child
+    public ArrayList<Session> sessionArray; // Array list which will hold all of the sessions for a child
 
     /*
 
@@ -54,6 +54,9 @@ public class Child
 
         // Set the date of birth variable
         setDateOfBirth(yearOfBirth, monthOfBirth, dayOfBirth);
+
+        // Initialize an empty array list
+        sessionArray = new ArrayList<Session>();
     }
 
     // Constructor for child class; This class takes no arguments and fills the variables of the child with mock data to be filled in later
@@ -66,6 +69,9 @@ public class Child
 
         // Set the birth date variable to a default date (to be filled out later)
         setDateOfBirth(2002, 2, 22);
+
+        // Initialize an empty array list
+        sessionArray = new ArrayList<Session>();
     }
 
     // Function which returns the first name of child
