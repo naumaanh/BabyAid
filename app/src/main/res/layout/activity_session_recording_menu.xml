@@ -66,7 +66,7 @@
     </ScrollView>
 
     <Button
-        android:id="@+id/backBtn"
+        android:id="@+id/backBtn_SOESM"
         android:layout_width="345dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -91,6 +91,6 @@
         app:layout_constraintBottom_toTopOf="@+id/scrollView2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/backBtn"
+        app:layout_constraintTop_toBottomOf="@+id/backBtn_SOESM"
         app:layout_constraintVertical_bias="0.126" />
 </android.support.constraint.ConstraintLayout>
