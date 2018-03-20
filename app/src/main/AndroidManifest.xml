@@ -16,12 +16,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SessionRecordingMenu" >
-        </activity>
+        <activity android:name=".SessionRecordingMenu"></activity>
         <activity android:name=".OptionsMenu" />
         <activity android:name=".StartOrEndSessionMenu" />
         <activity android:name=".SessionInformationMenu" />
-        <activity android:name=".SessionViewingMenu"></activity>
+        <activity android:name=".SessionViewingMenu" />
+        <activity android:name=".ShareWeeklyReportMenu"></activity>
     </application>
 
 </manifest>
