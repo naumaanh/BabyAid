@@ -10,12 +10,12 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import AppDataStructures.Child;
+import AppDataStructures.MedicalSession;
 import AppDataStructures.Session;
 import AppDataStructures.Settings;
 
 public class SessionViewingMenu extends AppCompatActivity
 {
-    ArrayList<Button> buttons;
     Button backButton;
     LinearLayout sessionList;
     LinearLayout.LayoutParams params;
@@ -29,7 +29,6 @@ public class SessionViewingMenu extends AppCompatActivity
 
         blank = Settings.getInstance();
         kid = Child.getChild();
-
         SimpleDateFormat sdFormat;
         if (blank.is24HTime)
         {
@@ -44,26 +43,33 @@ public class SessionViewingMenu extends AppCompatActivity
         sessionList = (LinearLayout) findViewById(R.id.sessionList);
         params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
         final Intent goToStartEndSessionMenuIntent = new Intent(getApplicationContext(), StartOrEndSessionMenu.class);
         final Intent goToSessionInformationMenuIntent = new Intent(getApplicationContext(), SessionInformationMenu.class);
 
-        for (int i = kid.sessionArray.size() - 1; i >= 0; i++)
+        for (int i = kid.sessionArray.size() - 1; i >= 0; i--)
         {
-            buttons.add(i, new Button(this));
-            buttons.get(i).setId(i);
+            Button temp = new Button(this);
+            temp.setId(i);
             switch (kid.sessionArray.get(i).sessionType)
             {
                 case WASTE_SESSION:
                     if (kid.sessionArray.get(i).isFinished)
                     {
-                        buttons.get(i).setText("Waste Session " + sdFormat.format(kid.sessionArray.get(i).startTime.getTime()) + " FINISHED");
+                        temp.setText("Waste Session " + sdFormat.format(kid.sessionArray.get(i).startTime.getTime()) + " FINISHED");
                     }
                     else
                     {
-                        buttons.get(i).setText("Waste Session " + sdFormat.format(kid.sessionArray.get(i).startTime.getTime()) + " ONGOING");
+                        temp.setText("Waste Session " + sdFormat.format(kid.sessionArray.get(i).startTime.getTime()) + " ONGOING");
                     }
-                    sessionList.addView(buttons.get(i), params);
-                    buttons.get(i).setOnClickListener(new View.OnClickListener() {
+                    sessionList.addView(temp, params);
+                    temp.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
                             if (kid.sessionArray.get(view.getId()).isFinished)
@@ -84,14 +90,14 @@ public class SessionViewingMenu extends AppCompatActivity
                 case MEDICATION_SESSION:
                     if (kid.sessionArray.get(i).isFinished)
                     {
-                        buttons.get(i).setText("Medicine Session " + sdFormat.format(kid.sessionArray.get(i).startTime.getTime()) + " FINISHED");
+                        temp.setText("Medicine Session " + sdFormat.format(kid.sessionArray.get(i).startTime.getTime()) + " FINISHED");
                     }
                     else
                     {
-                        buttons.get(i).setText("Medicine Session " + sdFormat.format(kid.sessionArray.get(i).startTime.getTime()) + " ONGOING");
+                        temp.setText("Medicine Session " + sdFormat.format(kid.sessionArray.get(i).startTime.getTime()) + " ONGOING");
                     }
-                    sessionList.addView(buttons.get(i), params);
-                    buttons.get(i).setOnClickListener(new View.OnClickListener() {
+                    sessionList.addView(temp, params);
+                    temp.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
                             if (kid.sessionArray.get(view.getId()).isFinished)
@@ -112,14 +118,14 @@ public class SessionViewingMenu extends AppCompatActivity
                 case SLEEPING_SESSION:
                     if (kid.sessionArray.get(i).isFinished)
                     {
-                        buttons.get(i).setText("Sleeping Session " + sdFormat.format(kid.sessionArray.get(i).startTime.getTime()) + " FINISHED");
+                        temp.setText("Sleeping Session " + sdFormat.format(kid.sessionArray.get(i).startTime.getTime()) + " FINISHED");
                     }
                     else
                     {
-                        buttons.get(i).setText("Sleeping Session " + sdFormat.format(kid.sessionArray.get(i).startTime.getTime()) + " ONGOING");
+                        temp.setText("Sleeping Session " + sdFormat.format(kid.sessionArray.get(i).startTime.getTime()) + " ONGOING");
                     }
-                    sessionList.addView(buttons.get(i), params);
-                    buttons.get(i).setOnClickListener(new View.OnClickListener() {
+                    sessionList.addView(temp, params);
+                    temp.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
                             if (kid.sessionArray.get(view.getId()).isFinished)
@@ -140,14 +146,14 @@ public class SessionViewingMenu extends AppCompatActivity
                 case FEEDING_SESSION:
                     if (kid.sessionArray.get(i).isFinished)
                     {
-                        buttons.get(i).setText("Feeding Session " + sdFormat.format(kid.sessionArray.get(i).startTime.getTime()) + " FINISHED");
+                        temp.setText("Feeding Session " + sdFormat.format(kid.sessionArray.get(i).startTime.getTime()) + " FINISHED");
                     }
                     else
                     {
-                        buttons.get(i).setText("Feeding Session " + sdFormat.format(kid.sessionArray.get(i).startTime.getTime()) + " ONGOING");
+                        temp.setText("Feeding Session " + sdFormat.format(kid.sessionArray.get(i).startTime.getTime()) + " ONGOING");
                     }
-                    sessionList.addView(buttons.get(i), params);
-                    buttons.get(i).setOnClickListener(new View.OnClickListener() {
+                    sessionList.addView(temp, params);
+                    temp.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
                             if (kid.sessionArray.get(view.getId()).isFinished)
