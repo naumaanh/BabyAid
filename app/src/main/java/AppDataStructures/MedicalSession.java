@@ -5,7 +5,7 @@ package AppDataStructures;
  */
 
 public class MedicalSession extends Session {
-    public String type;
+    public String type = "";
     public int dosage;
     public medGiven way;
 
