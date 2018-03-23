@@ -16,12 +16,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SessionRecordingMenu"></activity>
+        <activity android:name=".SessionRecordingMenu" />
         <activity android:name=".OptionsMenu" />
         <activity android:name=".StartOrEndSessionMenu" />
         <activity android:name=".SessionInformationMenu" />
         <activity android:name=".SessionViewingMenu" />
-        <activity android:name=".ShareWeeklyReportMenu"></activity>
+        <activity android:name=".ShareWeeklyReportMenu" />
+        <activity android:name=".FeedingSessionInfoMenu" />
+        <activity android:name=".MedicalSessionInfoMenu" />
+        <activity android:name=".SleepingSessionInfoMenu" />
+        <activity android:name=".WasteSessionInfoMenu"></activity>
     </application>
 
 </manifest>

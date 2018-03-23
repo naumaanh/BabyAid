@@ -1,17 +1,15 @@
 package myaaronbatch.unt.edu.babyapp;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 
 import AppDataStructures.Child;
-import AppDataStructures.MedicalSession;
-import AppDataStructures.Session;
 import AppDataStructures.Settings;
 
 public class SessionViewingMenu extends AppCompatActivity
@@ -51,7 +49,11 @@ public class SessionViewingMenu extends AppCompatActivity
         });
 
         final Intent goToStartEndSessionMenuIntent = new Intent(getApplicationContext(), StartOrEndSessionMenu.class);
-        final Intent goToSessionInformationMenuIntent = new Intent(getApplicationContext(), SessionInformationMenu.class);
+
+        final Intent goToFeedingSessionInfoMenuIntent = new Intent(getApplicationContext(), FeedingSessionInfoMenu.class);
+        final Intent goToMedicalSessionInfoMenuIntent = new Intent(getApplicationContext(), MedicalSessionInfoMenu.class);
+        final Intent goToSleepingSessionInfoMenuIntent = new Intent(getApplicationContext(), SleepingSessionInfoMenu.class);
+        final Intent goToWasteSessionInfoMenuIntent = new Intent(getApplicationContext(), WasteSessionInfoMenu.class);
 
         for (int i = kid.sessionArray.size() - 1; i >= 0; i--)
         {
@@ -74,8 +76,9 @@ public class SessionViewingMenu extends AppCompatActivity
                         public void onClick(View view) {
                             if (kid.sessionArray.get(view.getId()).isFinished)
                             {
-                                goToSessionInformationMenuIntent.putExtra("index", view.getId());
-                                startActivity(goToSessionInformationMenuIntent);
+                                goToWasteSessionInfoMenuIntent.putExtra("index", view.getId());
+                                goToWasteSessionInfoMenuIntent.putExtra("MenuName", "SessionViewingMenu");
+                                startActivity(goToWasteSessionInfoMenuIntent);
                             }
                             else
                             {
@@ -102,8 +105,9 @@ public class SessionViewingMenu extends AppCompatActivity
                         public void onClick(View view) {
                             if (kid.sessionArray.get(view.getId()).isFinished)
                             {
-                                goToSessionInformationMenuIntent.putExtra("index", view.getId());
-                                startActivity(goToSessionInformationMenuIntent);
+                                goToMedicalSessionInfoMenuIntent.putExtra("index", view.getId());
+                                goToMedicalSessionInfoMenuIntent.putExtra("MenuName", "SessionViewingMenu");
+                                startActivity(goToMedicalSessionInfoMenuIntent);
                             }
                             else
                             {
@@ -130,8 +134,9 @@ public class SessionViewingMenu extends AppCompatActivity
                         public void onClick(View view) {
                             if (kid.sessionArray.get(view.getId()).isFinished)
                             {
-                                goToSessionInformationMenuIntent.putExtra("index", view.getId());
-                                startActivity(goToSessionInformationMenuIntent);
+                                goToSleepingSessionInfoMenuIntent.putExtra("index", view.getId());
+                                goToSleepingSessionInfoMenuIntent.putExtra("MenuName", "SessionViewingMenu");
+                                startActivity(goToSleepingSessionInfoMenuIntent);
                             }
                             else
                             {
@@ -158,8 +163,9 @@ public class SessionViewingMenu extends AppCompatActivity
                         public void onClick(View view) {
                             if (kid.sessionArray.get(view.getId()).isFinished)
                             {
-                                goToSessionInformationMenuIntent.putExtra("index", view.getId());
-                                startActivity(goToSessionInformationMenuIntent);
+                                goToFeedingSessionInfoMenuIntent.putExtra("index", view.getId());
+                                goToFeedingSessionInfoMenuIntent.putExtra("MenuName", "SessionViewingMenu");
+                                startActivity(goToFeedingSessionInfoMenuIntent);
                             }
                             else
                             {

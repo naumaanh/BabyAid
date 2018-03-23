@@ -10,9 +10,12 @@ import android.widget.TextView;
 import java.util.Locale;
 
 import AppDataStructures.Child;
+import AppDataStructures.FeedingSession;
 import AppDataStructures.MedicalSession;
 import AppDataStructures.Session;
+import AppDataStructures.SleepingSession;
 import AppDataStructures.TimeVars;
+import AppDataStructures.WasteSession;
 
 // Class which represents the "Start/End Session Menu"
 public class StartOrEndSessionMenu extends AppCompatActivity
@@ -67,7 +70,7 @@ public class StartOrEndSessionMenu extends AppCompatActivity
                 // Get the session type that was sent in the string message
                 sessionType = getIntent().getStringExtra("SessionType");
 
-                testTextView.setText(sessionType);
+                testTextView.setText(menuName);
             }
 
         }
@@ -91,6 +94,9 @@ public class StartOrEndSessionMenu extends AppCompatActivity
                 sessionType = getIntent().getStringExtra("SessionType");
             }
         }
+
+        //System.out.println("Menu Name: " + menuName);
+        //System.out.println("Session Type: " + sessionType);
 
         // If the startOrEndBtn was pushed already, change the text on the button to "End Session"
         if(startPushed)
@@ -124,7 +130,7 @@ public class StartOrEndSessionMenu extends AppCompatActivity
 
                     if(sessionType.equals("Waste"))
                     {
-                        // add waste session to child's session array list
+                        child.sessionArray.add(new WasteSession());
                     }
 
                     else if(sessionType.equals("Medication"))
@@ -134,12 +140,12 @@ public class StartOrEndSessionMenu extends AppCompatActivity
 
                     else if(sessionType.equals("Sleeping"))
                     {
-                        // add sleeping session to child's session array list
+                        child.sessionArray.add(new SleepingSession());
                     }
 
                     else if(sessionType.equals("Feeding"))
                     {
-                        // add feeding session to child's session array list
+                        child.sessionArray.add(new FeedingSession());
                     }
 
                     // Show that the button has now been pressed
@@ -151,25 +157,30 @@ public class StartOrEndSessionMenu extends AppCompatActivity
 
                     Session sess = child.sessionArray.get(i);
 
-                    System.out.println();
+                    System.out.println("\n");
 
                     System.out.println("Start Time: " + sess.getStartTime().getTime());
 
-                    if(sess.sessionType.equals(SessionType.MEDICATION_SESSION)){
-                        System.out.println("Med Session");
+                    switch(sess.sessionType)
+                    {
+                        case MEDICATION_SESSION: System.out.println("Med session");
+                            break;
+                        case SLEEPING_SESSION: System.out.println("Sleep session");
+                            break;
+                        case FEEDING_SESSION: System.out.println("Feed session");
+                            break;
+                        case WASTE_SESSION: System.out.println("Waste session");
+                            break;
                     }
 
-                    System.out.println(child.sessionArray.size());
-                    System.out.println();
+                    System.out.println("Size: " + child.sessionArray.size());
+                    System.out.println("\n");
                     */
                 }
 
                 // If the button has already been pressed before
                 else if(startPushed)
                 {
-                    // Get an intent that is ready to transition to the SessionInformationMenu, and so that we can send the necessary messages
-                    Intent goToSessionInformationMenuIntent = new Intent(getApplicationContext(), SessionInformationMenu.class);
-
                     // If the user is coming from the SessionRecordingMenu, then this means that they want to end the session that they started previously
                     if(menuName.equals("SessionRecordingMenu"))
                     {
@@ -186,13 +197,15 @@ public class StartOrEndSessionMenu extends AppCompatActivity
                         session.isFinished = true;
 
                         /*
-                        System.out.println();
+                        System.out.println("\n");
                         // Test code
                         Session sess = child.sessionArray.get(index);
 
                         System.out.println("End Time: " + sess.getEndTime().getTime());
 
-                        System.out.println();
+                        System.out.println("Index: " + index);
+
+                        System.out.println("\n");
                         */
                     }
 
@@ -208,38 +221,74 @@ public class StartOrEndSessionMenu extends AppCompatActivity
 
                         // set the current session to finished
                         session.isFinished = true;
+
+                        /*
+                        System.out.println();
+                        // Test code
+                        Session sess = child.sessionArray.get(index);
+
+                        System.out.println("End Time poop: " + sess.getEndTime().getTime());
+
+                        System.out.println("Index: " + index);
+
+                        System.out.println();
+                        */
                     }
 
-                    // Place the name of this menu in the the "MenuName" putExtra
-                    goToSessionInformationMenuIntent.putExtra("MenuName", "StartOrEndSessionMenu");
-
-                    // Place the type of session that the user is ending into the "SessionType" putExtra
+                    // Transition the user to the correct session info menu based on the type of session they have
 
                     if(sessionType.equals("Waste"))
                     {
-                        goToSessionInformationMenuIntent.putExtra("SessionType", "Waste");
+                        Intent goToWasteSessionInfoMenuIntent = new Intent(getApplicationContext(), WasteSessionInfoMenu.class);
+
+                        // Place the name of this menu in the the "MenuName" putExtra
+                        goToWasteSessionInfoMenuIntent.putExtra("MenuName", "StartOrEndSessionMenu");
+
+                        // Place the index of the user's current session into the "index" putExtra
+                        goToWasteSessionInfoMenuIntent.putExtra("index", index);
+
+                        startActivity(goToWasteSessionInfoMenuIntent);
                     }
 
                     else if(sessionType.equals("Medication"))
                     {
-                        goToSessionInformationMenuIntent.putExtra("SessionType", "Medication");
+                        Intent goToMedicalSessionInfoMenuIntent = new Intent(getApplicationContext(), MedicalSessionInfoMenu.class);
+
+                        // Place the name of this menu in the the "MenuName" putExtra
+                        goToMedicalSessionInfoMenuIntent.putExtra("MenuName", "StartOrEndSessionMenu");
+
+                        // Place the index of the user's current session into the "index" putExtra
+                        goToMedicalSessionInfoMenuIntent.putExtra("index", index);
+
+                        startActivity(goToMedicalSessionInfoMenuIntent);
                     }
 
                     else if(sessionType.equals("Sleeping"))
                     {
-                        goToSessionInformationMenuIntent.putExtra("SessionType", "Sleeping");
+                        Intent goToSleepingSessionInfoMenuIntent = new Intent(getApplicationContext(), SleepingSessionInfoMenu.class);
+
+                        // Place the name of this menu in the the "MenuName" putExtra
+                        goToSleepingSessionInfoMenuIntent.putExtra("MenuName", "StartOrEndSessionMenu");
+
+                        // Place the index of the user's current session into the "index" putExtra
+                        goToSleepingSessionInfoMenuIntent.putExtra("index", index);
+
+                        startActivity(goToSleepingSessionInfoMenuIntent);
                     }
 
                     else if(sessionType.equals("Feeding"))
                     {
-                        goToSessionInformationMenuIntent.putExtra("SessionType", "Feeding");
+                        // Get an intent that is ready to transition to the current sessions's SessionInformationMenu, and so that we can send the necessary messages
+                        Intent goToFeedingSessionInfoMenuIntent = new Intent(getApplicationContext(), FeedingSessionInfoMenu.class);
+
+                        // Place the name of this menu in the the "MenuName" putExtra
+                        goToFeedingSessionInfoMenuIntent.putExtra("MenuName", "StartOrEndSessionMenu");
+
+                        // Place the index of the user's current session into the "index" putExtra
+                        goToFeedingSessionInfoMenuIntent.putExtra("index", index);
+
+                        startActivity(goToFeedingSessionInfoMenuIntent);
                     }
-
-                    // Place the index of the user's current session into the "index" putExtra
-                    goToSessionInformationMenuIntent.putExtra("index", index);
-
-                    // Go to the SessionInformationMenu
-                    startActivity(goToSessionInformationMenuIntent);
                 }
             }
         });
