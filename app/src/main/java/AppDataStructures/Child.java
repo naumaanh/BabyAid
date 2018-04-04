@@ -10,9 +10,9 @@ import java.util.Calendar;
 // Class which represents a child (with a name, sessions that belong to them, etc.)
 public class Child
 {
-    String firstName; // String var representing the child's first name
-    String lastName; // String var representing the child's last name
-    Calendar dateOfBirth; // String var representing the child's date of birth
+    public String firstName; // String var representing the child's first name
+    public String lastName; // String var representing the child's last name
+    public Calendar dateOfBirth; // String var representing the child's date of birth
     public ArrayList<Session> sessionArray; // Array list which will hold all of the sessions for a child
 
     /*
@@ -21,17 +21,103 @@ public class Child
 
      */
 
-    private static Child child; // Static child object (this will be the only child object to be created)
+    private static ArrayList<Child> children; // Static child array list
 
-    // Function which returns the static child object (uses constructor thst initializes the child to default values)
+    // Function which returns the current child object from the static array list
     public static Child getChild()
     {
-        if(child == null)
+        Settings tempSettings = Settings.getInstance();
+
+        Child tempChild = new Child();
+
+        // If the array list has not been initialized yet, then initialize the array list, and add a mock child to that array list
+        if(children == null)
         {
-            child = new Child();
+            children = new ArrayList<Child>();
+
+            children.add(tempChild);
+
+            tempSettings.childIndex = 0;
+            tempSettings.numberOfChildren = 1;
         }
 
-        return child;
+        // If the array is not null, but empty, fill the array with one mock child and return that child
+        else if(children.isEmpty())
+        {
+            children.add(tempChild);
+
+            tempSettings.childIndex = 0;
+            tempSettings.numberOfChildren = 1;
+        }
+
+        // return current child
+        return children.get(tempSettings.childIndex);
+    }
+
+    // Function which returns the current child object from the static array list (with a child as an input argument to serve as the first child to add to the array list)
+    // if there are currently no kids in the array list
+    private static void getChild(Child tempChild)
+    {
+        Settings tempSettings = Settings.getInstance();
+
+        // If the array list has not been initialized yet, then initialize the array list, and add the inputted child to that array list
+        if(children == null)
+        {
+            children = new ArrayList<Child>();
+
+            children.add(tempChild);
+
+            tempSettings.childIndex = 0;
+            tempSettings.numberOfChildren = 1;
+        }
+    }
+
+    // Function for adding a child to the children array list (with a child object as an input argument)
+    public static void addChild(Child tempChild)
+    {
+        Settings tempSettings = Settings.getInstance();
+
+        // If children array has not even been init. yet, then init. it with the inputted child as the first child in the array list of children
+        if(children == null)
+        {
+            getChild(tempChild);
+        }
+
+        // Else, just add the child to the array list
+        else
+        {
+            children.add(tempChild);
+            tempSettings.numberOfChildren += 1;
+        }
+    }
+
+    // Function for removing a child at a certain index of the array list
+    public static void removeChild(int index)
+    {
+        Settings tempSettings = Settings.getInstance();
+
+        Integer childrenArrayLength = children.size();
+
+        if(childrenArrayLength != 0)
+        {
+            if( (childrenArrayLength - 1) >= index)
+            {
+                children.remove(index);
+                tempSettings.numberOfChildren -= 1;
+            }
+        }
+    }
+
+    // Function which returns the actual array list of children
+    public static ArrayList<Child> getChildren()
+    {
+        // If children is a null object, then set it up
+        if(children == null)
+        {
+            getChild();
+        }
+
+        return children;
     }
 
     /*
@@ -124,8 +210,70 @@ public class Child
     {
         //Child mockChild = new Child("Aaron", "Batch", 1996, 7, 26);
 
+        Settings mockSettings = Settings.getInstance();
+
+        /////////////////
+
+        //Child q = new Child("Whoa", "Mao", 1990, 5, 22);
+
+        //Child.addChild(q);
+
+        /////////////////
+
         Child mockChild = Child.getChild();
 
+        System.out.println("First Name: " + mockChild.getFirstName());
+
+        System.out.println("Last Name: " + mockChild.getLastName());
+
+        Calendar cal = mockChild.getDateOfBirth();
+
+        System.out.println("DOB: " + cal.getTime());
+
+        //////////////////
+
+        Child p = new Child("Poop", "Mck", 1990, 5, 22);
+
+        Child.addChild(p);
+
+        mockSettings.childIndex = 1;
+
+        mockChild = Child.getChild();
+
+        System.out.println("First Name: " + mockChild.getFirstName());
+
+        System.out.println("Last Name: " + mockChild.getLastName());
+
+        Calendar cal2 = mockChild.getDateOfBirth();
+
+        System.out.println("DOB: " + cal2.getTime());
+
+        ///////////////////
+
+        Child.removeChild(4);
+
+        ///////////////////
+
+        ArrayList<Child> childs = Child.getChildren();
+
+        System.out.println("Size: " + childs.size());
+
+        mockSettings.childIndex = 0;
+
+        mockChild = childs.get(0);
+
+        System.out.println("First Name: " + mockChild.getFirstName());
+
+        System.out.println("Last Name: " + mockChild.getLastName());
+
+        Calendar cal3 = mockChild.getDateOfBirth();
+
+        System.out.println("DOB: " + cal3.getTime());
+
+        //////////////////
+
+        // Individual child test code
+        /*
         System.out.println("First name before change: " + mockChild.getFirstName());
 
         mockChild.setFirstName("Paul");
@@ -157,5 +305,6 @@ public class Child
         Child mockChild2 = Child.getChild();
 
         System.out.println("Name in child 2: " + mockChild2.getFirstName());
+        */
     }
 }
