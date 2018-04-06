@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".ChooseChildMenu">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,7 +25,10 @@
         <activity android:name=".FeedingSessionInfoMenu" />
         <activity android:name=".MedicalSessionInfoMenu" />
         <activity android:name=".SleepingSessionInfoMenu" />
-        <activity android:name=".WasteSessionInfoMenu"></activity>
+        <activity android:name=".WasteSessionInfoMenu" />
+        <activity android:name=".MainActivity" />
+        <activity android:name=".AddChildMenu" />
+        <activity android:name=".RemoveChildMenu"></activity>
     </application>
 
 </manifest>
