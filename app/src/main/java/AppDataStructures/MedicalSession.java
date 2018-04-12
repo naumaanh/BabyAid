@@ -11,5 +11,6 @@ public class MedicalSession extends Session {
 
     public MedicalSession() {
         super(SessionType.MEDICATION_SESSION);
+        way = null;
     }
 }
