@@ -23,7 +23,7 @@ public class Session
         sessionType = ST;
 
         // set locale variable
-        Locale locale = new Locale("en", "US");
+        Locale locale = new Locale("ENGLISH", "US");
 
         // Get current time into the start time variable
         setTimeToCurrentTime(TimeVars.START, "CST", locale);
@@ -112,13 +112,15 @@ public class Session
         // If time variable we want to affect is startTime, then get time for startTime
         if(whatTime == TimeVars.START)
         {
-            startTime = Calendar.getInstance(TZ, locale);
+            //startTime = Calendar.getInstance(TZ, locale);
+            startTime = Calendar.getInstance();
         }
 
         // If time variable we want to affect is endTime, then get time for endTime
         else if(whatTime == TimeVars.END)
         {
-            endTime = Calendar.getInstance(TZ, locale);
+            //endTime = Calendar.getInstance(TZ, locale);
+            endTime = Calendar.getInstance();
         }
     }
 
