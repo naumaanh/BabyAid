@@ -109,10 +109,17 @@ public class Child
         }
     }
 
-    // Function for adding a child to the children array list (with a child object as an input argument)
-    public static void addChild(Child tempChild)
+    // Function for adding a child to the children array list (with a child object variables as arguments)
+    public static void addChild(String fName, String lName, int yearOfBirth, int monthOfBirth, int dayOfBirth)
     {
         Settings tempSettings = Settings.getInstance();
+        Child tempChild = new Child();
+
+        tempChild.setFirstName(fName);
+
+        tempChild.setLastName(lName);
+
+        tempChild.setDateOfBirth(yearOfBirth, monthOfBirth, dayOfBirth);
 
         // If children array has not even been init. yet, then init. it with the inputted child as the first child in the array list of children
         if(children == null)
@@ -253,7 +260,7 @@ public class Child
 
         //Child q = new Child("Whoa", "Mao", 1990, 5, 22);
 
-        //Child.addChild(q);
+        Child.addChild("Whoa", "Mao", 1990, 5, 22);
 
         /////////////////
 
@@ -269,9 +276,9 @@ public class Child
 
         //////////////////
 
-        Child p = new Child("Poop", "Mck", 1990, 5, 22);
+        //Child p = new Child("Poop", "Mck", 1990, 5, 22);
 
-        Child.addChild(p);
+        Child.addChild("poop", "mck", 1990, 5, 23);
 
         mockSettings.childIndex = 1;
 
@@ -287,6 +294,7 @@ public class Child
 
         ///////////////////
 
+        /*
         Child.removeChild(4);
 
         ///////////////////
@@ -306,6 +314,7 @@ public class Child
         Calendar cal3 = mockChild.getDateOfBirth();
 
         System.out.println("DOB: " + cal3.getTime());
+        */
 
         //////////////////
 
