@@ -121,10 +121,20 @@ public class Child
         // If children is a null object, then set it up
         if(children == null)
         {
-            getChild();
+            setUpChildren();
         }
 
         return children;
+    }
+
+    // Function which sets up an empty array of children
+    public static void setUpChildren()
+    {
+        // If children array is null, give it an empty array
+        if(children == null)
+        {
+            children = new ArrayList<Child>();
+        }
     }
 
     /*
@@ -157,8 +167,8 @@ public class Child
     private Child()
     {
         // Give a default name (to be filled out later)
-        firstName = "John";
-        lastName = "Doe";
+        firstName = "FirstName";
+        lastName = "LastName";
 
         // Set the birth date variable to a default date (to be filled out later)
         setDateOfBirth(2002, 2, 22);
@@ -217,6 +227,10 @@ public class Child
     {
         //Child mockChild = new Child("Aaron", "Batch", 1996, 7, 26);
 
+        ArrayList<Child> tempChildren = Child.getChildren();
+
+        System.out.println("Size: " + tempChildren.size());
+        /*
         Settings mockSettings = Settings.getInstance();
 
         /////////////////
@@ -254,6 +268,7 @@ public class Child
         Calendar cal2 = mockChild.getDateOfBirth();
 
         System.out.println("DOB: " + cal2.getTime());
+        */
 
         ///////////////////
 
