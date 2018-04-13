@@ -1,18 +1,35 @@
 package AppDataStructures;
 
+import android.content.Context;
+import android.content.res.AssetManager;
+import android.os.Environment;
+
+import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Calendar;
+
+import myaaronbatch.unt.edu.babyapp.ChooseChildMenu;
 
 /**
  * Created by aaronbatch on 3/5/18.
  */
 
 // Class which represents a child (with a name, sessions that belong to them, etc.)
+//@XStreamAlias("CHILD")
 public class Child
 {
+    //@XStreamAlias("FNAME")
     public String firstName; // String var representing the child's first name
+    //@XStreamAlias("LNAME")
     public String lastName; // String var representing the child's last name
+    //@XStreamAlias("DOB")
     public Calendar dateOfBirth; // String var representing the child's date of birth
+    //@XStreamAlias("SARR")
     public ArrayList<Session> sessionArray; // Array list which will hold all of the sessions for a child
 
     /*
@@ -53,6 +70,26 @@ public class Child
         // return current child
         return children.get(tempSettings.childIndex);
     }
+
+    /*public static ArrayList<Child> getChildren(Context context)
+    {
+        InputStreamReader is = null;
+        XStream xstream = null;
+        try {
+            AssetManager assetManager = context.getAssets();
+            is = new InputStreamReader(assetManager.open("children.xml"));
+            xstream = new XStream();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        xstream.processAnnotations(Child.class);
+        xstream.processAnnotations(MedicalSession.class);
+        xstream.processAnnotations(WasteSession.class);
+        xstream.processAnnotations(SleepingSession.class);
+        xstream.processAnnotations(FeedingSession.class);
+        xstream.processAnnotations(Session.class);
+        return children;
+    }*/
 
     // Function which returns the current child object from the static array list (with a child as an input argument to serve as the first child to add to the array list)
     // if there are currently no kids in the array list

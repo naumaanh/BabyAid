@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity
     Button viewAllSessionsBtn; // button which if pressed will take the user to the session viewing menu
     Button shareWeeklyReportBtn; // button which if pressed will take the user to the weekly report menu
     Button optionsBtn; // button which if pressed will take the user to the options menu
+    Button returnBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -35,6 +36,7 @@ public class MainActivity extends AppCompatActivity
         viewAllSessionsBtn = (Button) findViewById(R.id.viewAllSessionsBtn);
         shareWeeklyReportBtn = (Button) findViewById(R.id.shareWeeklyReportBtn);
         optionsBtn = (Button) findViewById(R.id.optionsBtn);
+        returnBtn = findViewById(R.id.rtnBtn);
 
         // If the recordASessionBtn is pushed, then send the user to the SessionRecordingMenu
         recordASessionBtn.setOnClickListener(new View.OnClickListener()
@@ -79,6 +81,17 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View view)
             {
                 Intent intent = new Intent(getApplicationContext(), OptionsMenu.class);
+
+                startActivity(intent);
+            }
+        });
+
+        returnBtn.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                Intent intent = new Intent(getApplicationContext(), ChooseChildMenu.class);
 
                 startActivity(intent);
             }
