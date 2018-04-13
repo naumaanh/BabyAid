@@ -20,16 +20,16 @@ import myaaronbatch.unt.edu.babyapp.ChooseChildMenu;
  */
 
 // Class which represents a child (with a name, sessions that belong to them, etc.)
-@XStreamAlias("CHILD")
+//@XStreamAlias("CHILD")
 public class Child
 {
-    @XStreamAlias("FNAME")
+    //@XStreamAlias("FNAME")
     public String firstName; // String var representing the child's first name
-    @XStreamAlias("LNAME")
+    //@XStreamAlias("LNAME")
     public String lastName; // String var representing the child's last name
-    @XStreamAlias("DOB")
+    //@XStreamAlias("DOB")
     public Calendar dateOfBirth; // String var representing the child's date of birth
-    @XStreamAlias("SARR")
+    //@XStreamAlias("SARR")
     public ArrayList<Session> sessionArray; // Array list which will hold all of the sessions for a child
 
     /*
@@ -71,7 +71,7 @@ public class Child
         return children.get(tempSettings.childIndex);
     }
 
-    public static ArrayList<Child> getChildren(Context context)
+    /*public static ArrayList<Child> getChildren(Context context)
     {
         InputStreamReader is = null;
         XStream xstream = null;
@@ -89,7 +89,7 @@ public class Child
         xstream.processAnnotations(FeedingSession.class);
         xstream.processAnnotations(Session.class);
         return children;
-    }
+    }*/
 
     // Function which returns the current child object from the static array list (with a child as an input argument to serve as the first child to add to the array list)
     // if there are currently no kids in the array list

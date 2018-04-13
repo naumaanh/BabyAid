@@ -27,8 +27,9 @@ public class ChooseChildMenu extends AppCompatActivity {
         setContentView(R.layout.activity_choose_child_menu);
 
         options = Settings.getInstance();
+        //Child.addChild("Billy", "Bob", 2017, 10, 14);
+        //Child.addChild("Bobby", "Bill", 2017, 10, 14);
         kids = Child.getChildren();
-
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
 
         rmvBtn = findViewById(R.id.removeChildBtn);
@@ -48,6 +49,7 @@ public class ChooseChildMenu extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), AddChildMenu.class);
+                intent.putExtra("MenuName", "ChoosingChildMenu");
                 startActivity(intent);
             }
         });
@@ -64,7 +66,7 @@ public class ChooseChildMenu extends AppCompatActivity {
             {
                 temp.setText(kids.get(i).firstName + ", born " + sdf.format(kids.get(i).dateOfBirth.getTime()));
             }
-
+            childList.addView(temp, params);
             temp.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
