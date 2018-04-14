@@ -8,6 +8,8 @@ import android.support.v4.app.DialogFragment;
 
 import java.util.Calendar;
 
+import AppDataStructures.Settings;
+
 /**
  * Created by aaronbatch on 4/8/18.
  */
@@ -25,7 +27,9 @@ public class DatePickerFragment extends DialogFragment
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState)
     {
+        Settings tempSettings = Settings.getInstance();
+
         // Return a date picker dialog with current date
-        return new DatePickerDialog(getActivity(), (DatePickerDialog.OnDateSetListener) getActivity(), year, month, day);
+        return new DatePickerDialog(getActivity(), tempSettings.styleInt, (DatePickerDialog.OnDateSetListener) getActivity(), year, month, day);
     }
 }

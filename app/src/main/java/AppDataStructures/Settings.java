@@ -12,11 +12,15 @@ public class Settings {
     public int childIndex = 0;
     public Integer numberOfChildren = 0;
 
+    public int styleInt;
+
     public static Settings instance;
     private Settings() {
         is24HTime = false;
         isDarkTheme = false;
         isMetric = false;
+
+        styleInt = android.R.style.Theme_DeviceDefault_Light_Dialog_Alert;
     }
 
     public static Settings getInstance()
