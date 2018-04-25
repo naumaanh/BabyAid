@@ -14,6 +14,9 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.ShareActionProvider;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 import AppDataStructures.Child;
@@ -45,6 +48,15 @@ public class ShareWeeklyReportMenu extends AppCompatActivity {
     int totalSleeping = 0;
     int totalMedical = 0;
     int totalWaste = 0;
+    int maxLength = 100;
+    String[] wasteTypeMode = new String[maxLength];
+    String[] wasteColorMode = new String[maxLength];
+    String[] wasteConsistencyMode = new String[maxLength];
+
+    String[] medTypeMode = new String[maxLength];
+    String[] medWayMode = new String[maxLength];
+    int[] medDosageMode = new int[maxLength];
+    String emptyChecker = "";
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -64,11 +76,11 @@ public class ShareWeeklyReportMenu extends AppCompatActivity {
             sdFormat = new SimpleDateFormat("hh:mm a MM/dd");
         }
 
-        backButton = (Button) findViewById(R.id.backButton);
-        scrollpdf = (ScrollView) findViewById(R.id.scrollView5);
+        backButton = findViewById(R.id.backButton);
+        scrollpdf = findViewById(R.id.scrollView5);
         //share button
-        shareButton = (ImageButton) findViewById(R.id.shareButton);
-        sessionList = (LinearLayout) findViewById(R.id.sessionList);
+        shareButton = findViewById(R.id.shareButton);
+        sessionList = findViewById(R.id.sessionList);
         params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,21 +109,30 @@ public class ShareWeeklyReportMenu extends AppCompatActivity {
                         wastecolor1 = myws.wasteColor;
                         wastetype1 = myws.wasteType;
                         consistency1 = myws.consistency;
-                        temp.setText("Waste Session at " + sdFormat.format(kid.sessionArray.get(i).startTime.getTime()) +
-                                ". The color of the waste was " + wastecolor1 + ", the type of waste was " + wastetype1 +
-                                ", and the consistency was " + consistency1 + ". ");
+                        if (wastecolor1.equals(emptyChecker))
+                            wastecolor1 = "User Did not Enter";
+                        if (consistency1.equals(emptyChecker))
+                            consistency1 = "User Did not Enter";
 
-                        String wasteDummy = ("Waste Session at " + sdFormat.format(kid.sessionArray.get(i).startTime.getTime()) +
-                                ". The color of the waste was " + wastecolor1 + ", the type of waste was " + wastetype1 +
-                                ", and the consistency was " + consistency1 + ". ");
+                        wasteTypeMode[i] = wastetype1;
+                        wasteColorMode[i] = wastecolor1;
+                        wasteConsistencyMode[i] = consistency1;
+
+                        temp.setText("Waste Session start time: " + sdFormat.format(kid.sessionArray.get(i).startTime.getTime()) +
+                                "\nWaste Color: " + wastecolor1 +
+                                "\n Waste Type: " + wastetype1 +
+                                "\nWaste Consistency: " + consistency1);
+
+                        String wasteDummy = ("Waste Session start time: " + sdFormat.format(kid.sessionArray.get(i).startTime.getTime()) +
+                                "\nWaste Color: " + wastecolor1 +
+                                "\n Waste Type: " + wastetype1 +
+                                "\nWaste Consistency: " + consistency1);
 
                         allInfo = allInfo + System.getProperty("line.separator") + wasteDummy + System.getProperty("line.separator");
                         totalWaste = totalWaste + 1;
 
-
                     }
                     sessionList.addView(temp, params);
-                    ;
                     break;
                 case MEDICATION_SESSION:
                     if (kid.sessionArray.get(i).isFinished)
@@ -126,19 +147,27 @@ public class ShareWeeklyReportMenu extends AppCompatActivity {
                         dosage1 = myms.dosage;
                         way1 = myms.way;
 
-                        temp.setText("Medical Session at " + sdFormat.format(kid.sessionArray.get(i).startTime.getTime()) +
-                                ". The type of medication was " + type1 + ", the dosage was " + dosage1 +
-                                ", and the way it was administered was " + way1 );
+                        if (type1.equals(emptyChecker))
+                            type1 = "User Did not Enter";
 
-                        String medicalDummy = ("Medical Session at " + sdFormat.format(kid.sessionArray.get(i).startTime.getTime()) +
-                                ". The type of medication was " + type1 + ", the dosage was " + dosage1 +
-                                ", and the way it was administered was " + way1 );
+                        medDosageMode[i] = dosage1;
+                        medTypeMode[i] = type1;
+                        //medWayMode[i] = way1;
+
+                        temp.setText("Medical Session start time: " + sdFormat.format(kid.sessionArray.get(i).startTime.getTime()) +
+                                "\n Medication Type: " + type1 +
+                                "\n Dosage: " + dosage1 +
+                                "\n Way Given: " + way1);
+
+                        String medicalDummy = ("Medical Session start time: " + sdFormat.format(kid.sessionArray.get(i).startTime.getTime()) +
+                                "\n Medication Type: " + type1 +
+                                "\n Dosage: " + dosage1 +
+                                "\n Way Given: " + way1);
 
                         allInfo = allInfo + System.getProperty("line.separator") + medicalDummy + System.getProperty("line.separator");
                         totalMedical = totalMedical + 1;
                     }
                     sessionList.addView(temp, params);
-                    ;
                     break;
                 case SLEEPING_SESSION:
                     if (kid.sessionArray.get(i).isFinished)
@@ -155,7 +184,6 @@ public class ShareWeeklyReportMenu extends AppCompatActivity {
                         totalSleeping = totalSleeping + 1;
                     }
                     sessionList.addView(temp, params);
-                    ;
                     break;
                 case FEEDING_SESSION:
                     if (kid.sessionArray.get(i).isFinished)
@@ -183,9 +211,9 @@ public class ShareWeeklyReportMenu extends AppCompatActivity {
 
                     }
                     sessionList.addView(temp, params);
-                    ;
                     break;
             }
+
 
             //controls the on click listener for the share button
             shareButton.setOnClickListener(new View.OnClickListener() {
@@ -196,6 +224,7 @@ public class ShareWeeklyReportMenu extends AppCompatActivity {
                     body.append("\nThe total number of Sleeping Sessions logged was " + totalSleeping);
                     body.append("\nThe total number of Medical Sessions logged was " + totalMedical);
                     body.append("\nThe total number of Waste Sessions logged was " + totalWaste + "\n");
+                 //   body.append("\nThe most common recorded answer for waste type was " + Arrays.toString(wasteTypeM));
                     body.append(allInfo.toString());
 
                     Intent i = new Intent(Intent.ACTION_SEND);
