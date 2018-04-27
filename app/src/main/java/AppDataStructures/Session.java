@@ -1,5 +1,7 @@
 package AppDataStructures;
 
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+
 import java.util.Calendar;
 import java.util.Locale;
 import java.util.TimeZone;
@@ -7,12 +9,18 @@ import java.util.TimeZone;
 
 // Superclass for the other "session" sub-classes
 // Done, but i still need to test each function
+@XStreamAlias("SESS")
 public class Session
 {
+    @XStreamAlias("STIME")
     public Calendar startTime; // Var representing the start time of a session
+    @XStreamAlias("ETIME")
     Calendar endTime; // Var representing the end time of a session
+    @XStreamAlias("FINISHED")
     public Boolean isFinished; // Boolean representing whether the session is finished or still ongoing
+    @XStreamAlias("COMMENT")
     String extraComments; // String var which will hold extra comments that the user said about the session
+    @XStreamAlias("SESSTYPE")
     public SessionType sessionType; // Enum variable which will hold what kind of session we are dealing with
 
     // Constructor for the session class
