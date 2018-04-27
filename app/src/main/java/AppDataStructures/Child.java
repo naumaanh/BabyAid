@@ -20,16 +20,16 @@ import myaaronbatch.unt.edu.babyapp.ChooseChildMenu;
  */
 
 // Class which represents a child (with a name, sessions that belong to them, etc.)
-//@XStreamAlias("CHILD")
+@XStreamAlias("CHILD")
 public class Child
 {
-    //@XStreamAlias("FNAME")
+    @XStreamAlias("FNAME")
     public String firstName; // String var representing the child's first name
-    //@XStreamAlias("LNAME")
+    @XStreamAlias("LNAME")
     public String lastName; // String var representing the child's last name
-    //@XStreamAlias("DOB")
+    @XStreamAlias("DOB")
     public Calendar dateOfBirth; // String var representing the child's date of birth
-    //@XStreamAlias("SARR")
+    @XStreamAlias("SARR")
     public ArrayList<Session> sessionArray; // Array list which will hold all of the sessions for a child
 
     /*
