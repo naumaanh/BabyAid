@@ -15,9 +15,23 @@ import android.widget.ScrollView;
 import android.widget.ShareActionProvider;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Collections;
 import java.util.Objects;
+import java.util.Comparator;
+import java.sql.Wrapper;
+import java.util.stream.Collectors;
+import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.mapping;
+import static java.util.stream.Collectors.toList;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import AppDataStructures.Child;
 import AppDataStructures.Session;
@@ -89,17 +103,14 @@ public class ShareWeeklyReportMenu extends AppCompatActivity {
             }
         });
 
-        for (int i = kid.sessionArray.size() - 1; i >= 0; i--)
-        {
+        for (int i = kid.sessionArray.size() - 1; i >= 0; i--) {
             Button temp = new Button(this);
             //set button background to white so it blends in
             temp.setBackgroundColor(0xFFFFFF);
             temp.setId(i);
-            switch (kid.sessionArray.get(i).sessionType)
-            {
+            switch (kid.sessionArray.get(i).sessionType) {
                 case WASTE_SESSION:
-                    if (kid.sessionArray.get(i).isFinished)
-                    {
+                    if (kid.sessionArray.get(i).isFinished) {
                         String wastetype1;
                         String wastecolor1;
                         String consistency1;
@@ -135,8 +146,7 @@ public class ShareWeeklyReportMenu extends AppCompatActivity {
                     sessionList.addView(temp, params);
                     break;
                 case MEDICATION_SESSION:
-                    if (kid.sessionArray.get(i).isFinished)
-                    {
+                    if (kid.sessionArray.get(i).isFinished) {
                         String type1;
                         int dosage1;
                         medGiven way1;
@@ -170,15 +180,14 @@ public class ShareWeeklyReportMenu extends AppCompatActivity {
                     sessionList.addView(temp, params);
                     break;
                 case SLEEPING_SESSION:
-                    if (kid.sessionArray.get(i).isFinished)
-                    {
+                    if (kid.sessionArray.get(i).isFinished) {
                         final String endTime = sdFormat.format(kid.sessionArray.get(i).getEndTime().getTime());
 
                         temp.setText("Sleeping Session started at " + sdFormat.format(kid.sessionArray.get(i).startTime.getTime())
-                                + ", and it ended at "+ endTime + ". ");
+                                + ", and it ended at " + endTime + ". ");
 
                         String sleepDummy = ("Sleeping Session started at " + sdFormat.format(kid.sessionArray.get(i).startTime.getTime())
-                                + ", and it ended at "+ endTime + ". ");
+                                + ", and it ended at " + endTime + ". ");
 
                         allInfo = allInfo + System.getProperty("line.separator") + sleepDummy + System.getProperty("line.separator");
                         totalSleeping = totalSleeping + 1;
@@ -186,8 +195,7 @@ public class ShareWeeklyReportMenu extends AppCompatActivity {
                     sessionList.addView(temp, params);
                     break;
                 case FEEDING_SESSION:
-                    if (kid.sessionArray.get(i).isFinished)
-                    {
+                    if (kid.sessionArray.get(i).isFinished) {
                         String method1;
                         String foodtype1;
                         int amount1;
@@ -199,8 +207,8 @@ public class ShareWeeklyReportMenu extends AppCompatActivity {
                         foodtype1 = myfs.foodType;
 
                         temp.setText("Feeding Session at " + sdFormat.format(kid.sessionArray.get(i).startTime.getTime()) +
-                                    ". The method it was consumed was by " + method1 + ", the food type was " + foodtype1 +
-                                    ", and the amount consumed was " + amount1 + ". ");
+                                ". The method it was consumed was by " + method1 + ", the food type was " + foodtype1 +
+                                ", and the amount consumed was " + amount1 + ". ");
 
                         String foodDummy = ("Feeding Session at " + sdFormat.format(kid.sessionArray.get(i).startTime.getTime()) +
                                 ". The method it was consumed was by " + method1 + ", the food type was " + foodtype1 +
@@ -214,6 +222,67 @@ public class ShareWeeklyReportMenu extends AppCompatActivity {
                     break;
             }
 
+            final String[] practice = new String[maxLength];
+
+            practice[0] = "blue";
+            practice[1] = "red";
+            practice[2] = "orange";
+            practice[3] = "blue";
+            practice[4] = "blue";
+            practice[5] = "black";
+            practice[6] = "red";
+            practice[7] = "red";
+            practice[8] = "blue";
+
+
+           Arrays.sort(practice, new Comparator<String>() {
+                @Override
+                public int compare(String o1, String o2) {
+                    if (o1 == null && o2 == null) {
+                        return 0;
+                    }
+                    if (o1 == null) {
+                        return 1;
+                    }
+                    if (o2 == null) {
+                        return -1;
+                    }
+                    return o1.compareTo(o2);
+                }
+            });
+            int total = 0;
+            for (int y=0;y<maxLength;y++)
+            {
+                if (practice[0] == null)
+                {
+                    total = 0;
+                }
+                else if (practice[y] != null)
+                {
+                    total = y+1;
+                }
+                y++;
+            }
+
+            final String[] helper = new String[total];
+            for (int s=0;s<total;s++)
+            {
+                helper[s] = practice[s];
+            }
+
+            final Map<String, Integer> map = new HashMap();
+
+
+            for (String x:helper){
+
+                if (!map.containsKey(x)){
+                    map.put(x,1);
+                }
+                else{
+                    map.put(x, map.get(x)+1);
+                }
+            }
+
 
             //controls the on click listener for the share button
             shareButton.setOnClickListener(new View.OnClickListener() {
@@ -224,7 +293,9 @@ public class ShareWeeklyReportMenu extends AppCompatActivity {
                     body.append("\nThe total number of Sleeping Sessions logged was " + totalSleeping);
                     body.append("\nThe total number of Medical Sessions logged was " + totalMedical);
                     body.append("\nThe total number of Waste Sessions logged was " + totalWaste + "\n");
-                 //   body.append("\nThe most common recorded answer for waste type was " + Arrays.toString(wasteTypeM));
+                    body.append("\n" + helper);
+                    body.append("]n\n" + map);
+                    body.append("\nThe most common recorded answer for waste color was " + Arrays.toString(helper));
                     body.append(allInfo.toString());
 
                     Intent i = new Intent(Intent.ACTION_SEND);
