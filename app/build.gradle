@@ -26,4 +26,7 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     implementation files('lib/xstream-1.4.10-java7.jar')
+    implementation files('lib/dropbox-core-sdk-3.0.7.jar')
+    implementation files('lib/dropbox-core-sdk-3.0.7-sources.jar')
+    implementation files('lib/lib/jackson-core-2.7.4.jar')
 }
