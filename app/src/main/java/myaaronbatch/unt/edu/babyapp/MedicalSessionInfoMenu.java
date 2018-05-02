@@ -1,7 +1,6 @@
 package myaaronbatch.unt.edu.babyapp;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
@@ -9,14 +8,13 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.NumberPicker;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import AppDataStructures.Child;
 import AppDataStructures.MedicalSession;
 import AppDataStructures.medGiven;
 
-public class MedicalSessionInfoMenu extends AppCompatActivity {
+public class MedicalSessionInfoMenu extends BaseActivity {
 
     NumberPicker dosagePicker = null;
     EditText medTypeText = null;
