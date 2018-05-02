@@ -1,7 +1,6 @@
 package myaaronbatch.unt.edu.babyapp;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -13,7 +12,7 @@ import java.util.ArrayList;
 import AppDataStructures.Child;
 import AppDataStructures.Settings;
 
-public class ChooseChildMenu extends AppCompatActivity {
+public class ChooseChildMenu extends BaseActivity {
     Button rmvBtn;
     Button addBtn;
     LinearLayout childList;
