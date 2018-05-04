@@ -30,7 +30,7 @@ import AppDataStructures.Settings;
 import AppDataStructures.SleepingSession;
 import AppDataStructures.WasteSession;
 
-public class AddChildMenu extends AppCompatActivity implements DatePickerDialog.OnDateSetListener
+public class AddChildMenu extends BaseActivity implements DatePickerDialog.OnDateSetListener
 {
     TextView currentFirstNameTV; // Textview for displaying the current first name of the child
     EditText firstNameEditText; // Edittext var for inputting the name for the first name of the child
