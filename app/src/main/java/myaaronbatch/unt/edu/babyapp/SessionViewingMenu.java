@@ -2,6 +2,7 @@ package myaaronbatch.unt.edu.babyapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -11,7 +12,7 @@ import java.text.SimpleDateFormat;
 import AppDataStructures.Child;
 import AppDataStructures.Settings;
 
-public class SessionViewingMenu extends BaseActivity
+public class SessionViewingMenu extends AppCompatActivity
 {
     Button backButton;
     LinearLayout sessionList;

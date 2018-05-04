@@ -2,26 +2,31 @@ package myaaronbatch.unt.edu.babyapp;
 
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.graphics.pdf.PdfDocument;
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
 import android.view.View;
+import android.content.Intent;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
-
+import android.widget.ShareActionProvider;
 import java.text.SimpleDateFormat;
+import java.util.Objects;
 
 import AppDataStructures.Child;
-import AppDataStructures.FeedingSession;
-import AppDataStructures.MedicalSession;
+import AppDataStructures.Session;
 import AppDataStructures.Settings;
+import AppDataStructures.FeedingSession;
+import AppDataStructures.SleepingSession;
 import AppDataStructures.WasteSession;
+import AppDataStructures.MedicalSession;
 import AppDataStructures.medGiven;
 
 
-public class ShareWeeklyReportMenu extends BaseActivity {
+public class ShareWeeklyReportMenu extends AppCompatActivity {
 
 
     Button backButton;

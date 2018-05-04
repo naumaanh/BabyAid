@@ -5,6 +5,7 @@ import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -19,7 +20,7 @@ import AppDataStructures.Child;
 import AppDataStructures.Settings;
 import AppDataStructures.SleepingSession;
 
-public class SleepingSessionInfoMenu extends BaseActivity implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener
+public class SleepingSessionInfoMenu extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener
 {
     TextView currentStartDateTV; // Textview var representing the box that will hold the current start date
     TextView currentStartTimeTV; // Textview var representing the box that will hold the current start time

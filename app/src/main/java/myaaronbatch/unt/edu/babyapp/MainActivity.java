@@ -2,13 +2,14 @@ package myaaronbatch.unt.edu.babyapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import AppDataStructures.Child;
 
-public class MainActivity extends BaseActivity
+public class MainActivity extends AppCompatActivity
 {
     TextView titleTextView; // Textview which represents the title of the activity
     TextView subtitleTextView; // Textview which represents the subtitle of the activity

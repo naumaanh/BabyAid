@@ -2,6 +2,7 @@ package myaaronbatch.unt.edu.babyapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
@@ -23,7 +24,7 @@ import AppDataStructures.SleepingSession;
 import AppDataStructures.WasteSession;
 
 // Class which represents the info menu for the feeding session
-public class FeedingSessionInfoMenu extends BaseActivity
+public class FeedingSessionInfoMenu extends AppCompatActivity
 {
     NumberPicker feedingMethodPicker = null; // Number picker for the feeding method
     EditText foodTypeTextBox; // editable text box for the food type

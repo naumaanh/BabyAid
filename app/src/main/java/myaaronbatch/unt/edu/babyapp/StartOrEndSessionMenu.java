@@ -2,6 +2,7 @@ package myaaronbatch.unt.edu.babyapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -17,7 +18,7 @@ import AppDataStructures.TimeVars;
 import AppDataStructures.WasteSession;
 
 // Class which represents the "Start/End Session Menu"
-public class StartOrEndSessionMenu extends BaseActivity
+public class StartOrEndSessionMenu extends AppCompatActivity
 {
     Button backBtn_SOESM; // Button which will take the user to the previous screen
     Button startOrEndBtn; // Button which will start a session or end a session (depending on what it is displaying at that time)

@@ -2,11 +2,12 @@ package myaaronbatch.unt.edu.babyapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
 // Class that represents the "Session Recording Menu"
-public class SessionRecordingMenu extends BaseActivity
+public class SessionRecordingMenu extends AppCompatActivity
 {
     Button backBtn; // Btn which represents the back button on the view
     Button feedingSessionBtn; // Btn which represents the feeding session button on the view
