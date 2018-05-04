@@ -38,7 +38,7 @@ public class MedicalSessionInfoMenu extends AppCompatActivity {
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
-        child = Child.getChild();
+        child = Child.getChild(this);
 
         dosagePicker = (NumberPicker)findViewById(R.id.dosagePickr);
         wayPicker = (NumberPicker)findViewById(R.id.wayPickr);
@@ -105,6 +105,8 @@ public class MedicalSessionInfoMenu extends AppCompatActivity {
                 thisSession.way = givenArr[wayPicker.getValue()];
 
                 thisSession.type = medTypeText.getText().toString();
+
+                Child.save();
 
                 if(menuName.equals("StartOrEndSessionMenu"))
                 {

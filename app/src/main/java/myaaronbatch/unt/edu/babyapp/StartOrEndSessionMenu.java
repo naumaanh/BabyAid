@@ -150,7 +150,7 @@ public class StartOrEndSessionMenu extends AppCompatActivity
 
                     // Show that the button has now been pressed
                     startPushed = true;
-
+                    Child.save();
                     // Test Code
                     /*
                     Integer i = child.sessionArray.size() - 1;
@@ -195,7 +195,7 @@ public class StartOrEndSessionMenu extends AppCompatActivity
 
                         // Set the current session to finished
                         session.isFinished = true;
-
+                        Child.save();
                         /*
                         System.out.println("\n");
                         // Test code
@@ -221,7 +221,7 @@ public class StartOrEndSessionMenu extends AppCompatActivity
 
                         // set the current session to finished
                         session.isFinished = true;
-
+                        Child.save();
                         /*
                         System.out.println();
                         // Test code

@@ -2,6 +2,7 @@ package myaaronbatch.unt.edu.babyapp;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
@@ -12,11 +13,22 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.thoughtworks.xstream.XStream;
+
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.text.DateFormat;
 import java.util.Calendar;
 
 import AppDataStructures.Child;
+import AppDataStructures.FeedingSession;
+import AppDataStructures.MedicalSession;
+import AppDataStructures.Session;
 import AppDataStructures.Settings;
+import AppDataStructures.SleepingSession;
+import AppDataStructures.WasteSession;
 
 public class AddChildMenu extends AppCompatActivity implements DatePickerDialog.OnDateSetListener
 {
@@ -216,6 +228,8 @@ public class AddChildMenu extends AppCompatActivity implements DatePickerDialog.
                     // Send user back to options menu
                 }
                 */
+
+                Child.save();
             }
         });
 

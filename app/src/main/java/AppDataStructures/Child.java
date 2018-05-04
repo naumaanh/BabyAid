@@ -10,6 +10,7 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -71,8 +72,41 @@ public class Child
         return children.get(tempSettings.childIndex);
     }
 
-    /*public static ArrayList<Child> getChildren(Context context)
+    public static Child getChild(Context context)
     {
+        Settings tempSettings = Settings.getInstance();
+
+        getChildren(context);
+
+        Child tempChild = new Child();
+
+        // If the array list has not been initialized yet, then initialize the array list, and add a mock child to that array list
+        if(children == null)
+        {
+            children = new ArrayList<Child>();
+
+            children.add(tempChild);
+
+            tempSettings.childIndex = 0;
+            tempSettings.numberOfChildren = 1;
+        }
+
+        // If the array is not null, but empty, fill the array with one mock child and return that child
+        else if(children.isEmpty())
+        {
+            children.add(tempChild);
+
+            tempSettings.childIndex = 0;
+            tempSettings.numberOfChildren = 1;
+        }
+
+        // return current child
+        return children.get(tempSettings.childIndex);
+    }
+
+    public static ArrayList<Child> getChildren(Context context)
+    {
+
         InputStreamReader is = null;
         XStream xstream = null;
         try {
@@ -88,8 +122,28 @@ public class Child
         xstream.processAnnotations(SleepingSession.class);
         xstream.processAnnotations(FeedingSession.class);
         xstream.processAnnotations(Session.class);
-        return children;
-    }*/
+        children = (ArrayList<Child>)xstream.fromXML(is);
+        return getChildren();
+    }
+
+    public static void save()
+    {
+        PrintWriter pw = null;
+        XStream xstream = null;
+        try {
+            pw = new PrintWriter("children.xml");
+            xstream = new XStream();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        xstream.processAnnotations(Child.class);
+        xstream.processAnnotations(MedicalSession.class);
+        xstream.processAnnotations(WasteSession.class);
+        xstream.processAnnotations(SleepingSession.class);
+        xstream.processAnnotations(FeedingSession.class);
+        xstream.processAnnotations(Session.class);
+        pw.print(xstream.toXML(getChildren()));
+    }
 
     // Function which returns the current child object from the static array list (with a child as an input argument to serve as the first child to add to the array list)
     // if there are currently no kids in the array list

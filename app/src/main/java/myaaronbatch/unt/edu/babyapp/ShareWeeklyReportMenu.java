@@ -52,8 +52,8 @@ public class ShareWeeklyReportMenu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_share_weekly_report_menu);
 
-        blank = Settings.getInstance();
-        kid = Child.getChild();
+        blank = Settings.getInstance(this);
+        kid = Child.getChild(this);
         SimpleDateFormat sdFormat;
         if (blank.is24HTime)
         {

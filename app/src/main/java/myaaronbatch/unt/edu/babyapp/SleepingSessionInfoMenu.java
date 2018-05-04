@@ -93,8 +93,8 @@ public class SleepingSessionInfoMenu extends AppCompatActivity implements DatePi
 
         // Get current child and settings objects
 
-        child = Child.getChild();
-        tempSettings = Settings.getInstance();
+        child = Child.getChild(this);
+        tempSettings = Settings.getInstance(this);
 
         // Get current session from child
         currentSession = (SleepingSession) child.sessionArray.get(index);
@@ -247,7 +247,7 @@ public class SleepingSessionInfoMenu extends AppCompatActivity implements DatePi
                 System.out.println("End Time: " + tCal.getTime());
 
                 /////////////// END OF TEST CODE
-
+                Child.save();
                 // Take the user to the current child's main menu
                 startActivity(goToMainMenuIntent);
             }
