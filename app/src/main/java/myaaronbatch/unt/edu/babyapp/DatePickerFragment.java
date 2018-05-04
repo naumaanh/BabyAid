@@ -30,6 +30,6 @@ public class DatePickerFragment extends DialogFragment
         Settings tempSettings = Settings.getInstance();
 
         // Return a date picker dialog with current date
-        return new DatePickerDialog(getActivity(), tempSettings.styleInt, (DatePickerDialog.OnDateSetListener) getActivity(), year, month, day);
+        return new DatePickerDialog(getActivity(), (DatePickerDialog.OnDateSetListener) getActivity(), year, month, day);
     }
 }
