@@ -1,8 +1,7 @@
 package myaaronbatch.unt.edu.babyapp;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
@@ -14,7 +13,7 @@ import android.widget.TextView;
 import AppDataStructures.Child;
 import AppDataStructures.WasteSession;
 
-public class WasteSessionInfoMenu extends AppCompatActivity {
+public class WasteSessionInfoMenu extends BaseActivity {
 
     NumberPicker wasteTypePicker = null; // Number picker for the waste type method
     EditText wasteColorTextBox; // editable text box for the waste color

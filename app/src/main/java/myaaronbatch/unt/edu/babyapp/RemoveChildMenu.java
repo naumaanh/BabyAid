@@ -1,9 +1,8 @@
 package myaaronbatch.unt.edu.babyapp;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class RemoveChildMenu extends AppCompatActivity {
+public class RemoveChildMenu extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
