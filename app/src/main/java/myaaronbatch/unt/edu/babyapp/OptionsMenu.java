@@ -1,5 +1,6 @@
 package myaaronbatch.unt.edu.babyapp;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -31,6 +32,8 @@ public class OptionsMenu extends BaseActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_options_menu);
+
+        final Context ctx = this;
 
         // Initialize variables with their UI counterparts
 
@@ -97,6 +100,8 @@ public class OptionsMenu extends BaseActivity
                 // Save user's selected settings
                 settings.is24HTime = is24HrTime;
                 settings.isDarkTheme = isDarkTheme;
+
+                settings.save(ctx);
 
                 // TEST CODE
 

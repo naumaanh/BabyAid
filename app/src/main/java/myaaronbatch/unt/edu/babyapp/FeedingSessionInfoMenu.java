@@ -1,5 +1,6 @@
 package myaaronbatch.unt.edu.babyapp;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -49,6 +50,8 @@ public class FeedingSessionInfoMenu extends BaseActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feeding_session_info_menu);
+
+        final Context ctx = this;
 
         // Hide keyboard initially
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
@@ -135,7 +138,7 @@ public class FeedingSessionInfoMenu extends BaseActivity
                 // Set the food amount in the amount var in the session
                 mySession.amount = foodAmountPicker.getValue();
 
-                Child.save();
+                Child.save(ctx);
 
                 // If we came here from the start or end session menu, then transition to the session recording menu
                 if(MenuName.equals("StartOrEndSessionMenu"))

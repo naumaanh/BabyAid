@@ -1,6 +1,7 @@
 package myaaronbatch.unt.edu.babyapp;
 
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.os.Bundle;
@@ -64,6 +65,7 @@ public class AddChildMenu extends BaseActivity implements DatePickerDialog.OnDat
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_child_menu);
+        final Context ctx = this;
 
         // Connect var to UI elements
 
@@ -229,7 +231,7 @@ public class AddChildMenu extends BaseActivity implements DatePickerDialog.OnDat
                 }
                 */
 
-                Child.save();
+                Child.save(ctx);
             }
         });
 

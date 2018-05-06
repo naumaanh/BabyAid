@@ -7,12 +7,17 @@ import android.os.Environment;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Scanner;
 
 import myaaronbatch.unt.edu.babyapp.ChooseChildMenu;
 
@@ -106,12 +111,13 @@ public class Child
 
     public static ArrayList<Child> getChildren(Context context)
     {
-
-        InputStreamReader is = null;
         XStream xstream = null;
+        String xml = "";
+        java.util.Scanner s;
         try {
             AssetManager assetManager = context.getAssets();
-            is = new InputStreamReader(assetManager.open("children.xml"));
+            s = new Scanner(new File(context.getFilesDir() + File.separator + "children.xml")).useDelimiter("\\A");
+            xml = s.hasNext() ? s.next() : "";
             xstream = new XStream();
         } catch (IOException e) {
             e.printStackTrace();
@@ -122,27 +128,38 @@ public class Child
         xstream.processAnnotations(SleepingSession.class);
         xstream.processAnnotations(FeedingSession.class);
         xstream.processAnnotations(Session.class);
-        children = (ArrayList<Child>)xstream.fromXML(is);
+        if (xml.isEmpty())
+        {
+            children = new ArrayList<Child>();
+        }
+        else
+        {
+            CArr arr = (CArr) xstream.fromXML(xml);
+            children = arr.cArr;
+        }
         return getChildren();
     }
 
-    public static void save()
+    public static void save(Context context)
     {
-        PrintWriter pw = null;
+        File file = new File(context.getFilesDir() + File.separator + "children.xml");
         XStream xstream = null;
+        PrintWriter pw = null;
         try {
-            pw = new PrintWriter("children.xml");
+            pw = new PrintWriter(new FileOutputStream(file));
             xstream = new XStream();
+            xstream.processAnnotations(Child.class);
+            xstream.processAnnotations(MedicalSession.class);
+            xstream.processAnnotations(WasteSession.class);
+            xstream.processAnnotations(SleepingSession.class);
+            xstream.processAnnotations(FeedingSession.class);
+            xstream.processAnnotations(Session.class);
+            CArr arr = new CArr(children);
+            pw.print(xstream.toXML(arr));
+            pw.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        xstream.processAnnotations(Child.class);
-        xstream.processAnnotations(MedicalSession.class);
-        xstream.processAnnotations(WasteSession.class);
-        xstream.processAnnotations(SleepingSession.class);
-        xstream.processAnnotations(FeedingSession.class);
-        xstream.processAnnotations(Session.class);
-        pw.print(xstream.toXML(getChildren()));
     }
 
     // Function which returns the current child object from the static array list (with a child as an input argument to serve as the first child to add to the array list)
