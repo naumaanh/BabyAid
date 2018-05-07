@@ -14,7 +14,7 @@ public class BaseActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         // Get settings singleton
-        settings = Settings.getInstance();
+        settings = Settings.getInstance(this);
 
         // If theme is set to the dark theme, switch to the dark theme
         if(settings.isDarkTheme)

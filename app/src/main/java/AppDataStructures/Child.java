@@ -116,7 +116,16 @@ public class Child
         java.util.Scanner s;
         try {
             AssetManager assetManager = context.getAssets();
-            s = new Scanner(new File(context.getFilesDir() + File.separator + "children.xml")).useDelimiter("\\A");
+            File f = new File(context.getFilesDir() + File.separator + "children.xml");
+            if (f.exists())
+            {
+                s = new Scanner(f).useDelimiter("\\A");
+            }
+            else
+            {
+                f.createNewFile();
+                s = new Scanner(f).useDelimiter("\\A");
+            }
             xml = s.hasNext() ? s.next() : "";
             xstream = new XStream();
         } catch (IOException e) {
@@ -137,7 +146,7 @@ public class Child
             CArr arr = (CArr) xstream.fromXML(xml);
             children = arr.cArr;
         }
-        return getChildren();
+        return children;
     }
 
     public static void save(Context context)

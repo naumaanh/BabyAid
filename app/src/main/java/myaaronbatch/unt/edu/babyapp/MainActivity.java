@@ -26,7 +26,7 @@ public class MainActivity extends BaseActivity
         setContentView(R.layout.activity_main);
 
         // Initialize the child singleton object
-        Child.getChild();
+        Child.getChild(this);
 
         // Get references to UI elements
         titleTextView = (TextView) findViewById(R.id.titleTextView);

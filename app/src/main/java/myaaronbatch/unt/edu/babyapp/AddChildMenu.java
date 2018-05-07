@@ -201,15 +201,15 @@ public class AddChildMenu extends BaseActivity implements DatePickerDialog.OnDat
                     Child.addChild(possibleFirstName, possibleLastName, year, month, day);
 
                     ////// TEST CODE BEGIN
-                    Child c = Child.getChildren().get(0);
+                    //Child c = Child.getChildren(ctx).get(0);
 
-                    System.out.println("First NAme: " + c.getFirstName());
-                    System.out.println("Last Name: " + c.getLastName());
-                    System.out.println("DOB: " + c.getDateOfBirth().getTime());
+                    //System.out.println("First NAme: " + c.getFirstName());
+                    //System.out.println("Last Name: " + c.getLastName());
+                    //System.out.println("DOB: " + c.getDateOfBirth().getTime());
 
 
                     /////// TEST CODE END
-
+                    Child.save(ctx);
                     // Make intent that is set to take the user back to the choosing child ,enu
                     Intent goToChoosingChildMenuIntent = new Intent(getApplicationContext(), ChooseChildMenu.class);
 
