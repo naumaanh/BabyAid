@@ -18,19 +18,19 @@ import java.util.Scanner;
 /**
  * Created by aaronbatch on 3/5/18.
  */
-@XStreamAlias("SETTINGS")
+//@XStreamAlias("SETTINGS")
 public class Settings {
-    @XStreamAlias("24HTIME")
+    //@XStreamAlias("24HTIME")
     public boolean is24HTime;
-    @XStreamAlias("DARKTHEME")
+    //@XStreamAlias("DARKTHEME")
     public boolean isDarkTheme;
-    @XStreamAlias("ISMETRIC")
+    //@XStreamAlias("ISMETRIC")
     public boolean isMetric;
-    @XStreamAlias("CINDEX")
+    //@XStreamAlias("CINDEX")
     public int childIndex = 0;
-    @XStreamAlias("NUMCHILDREN")
+    //@XStreamAlias("NUMCHILDREN")
     public Integer numberOfChildren = 0;
-    @XStreamAlias("STYLEINT")
+    //@XStreamAlias("STYLEINT")
     public int styleInt;
 
     public static Settings instance;
@@ -58,20 +58,29 @@ public class Settings {
         java.util.Scanner s;
         try {
             AssetManager assetManager = context.getAssets();
-            s = new Scanner(new File(context.getFilesDir() + File.separator + "settings.xml")).useDelimiter("\\A");
+            File f = new File(context.getFilesDir() + File.separator + "settings.xml");
+            if (f.exists())
+            {
+                s = new Scanner(f).useDelimiter("\\A");
+            }
+            else
+            {
+                f.createNewFile();
+                s = new Scanner(f).useDelimiter("\\A");
+            }
             xml = s.hasNext() ? s.next() : "";
             xstream = new XStream();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        xstream.processAnnotations(Settings.class);
+        //xstream.processAnnotations(Settings.class);
         if (xml.isEmpty())
         {
             instance = new Settings();
         }
         else
         {
-            instance = (Settings) xstream.fromXML(xml);
+            instance = (Settings) xstream.fromXML(xml); //this is the problem
         }
         return instance;
     }
@@ -84,7 +93,7 @@ public class Settings {
         try {
             pw = new PrintWriter(new FileOutputStream(file));
             xstream = new XStream();
-            xstream.processAnnotations(Settings.class);
+            //xstream.processAnnotations(Settings.class);
             pw.print(xstream.toXML(instance));
             pw.close();
         } catch (IOException e) {

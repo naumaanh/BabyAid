@@ -119,7 +119,7 @@ public class StartOrEndSessionMenu extends BaseActivity
             public void onClick(View view)
             {
                 // Get the child singleton
-                child = Child.getChild();
+                child = Child.getChild(ctx);
 
                 // If the startOrEndBtn has not been pressed before now, and if the user came from the SessionRecordingMenu, then this means that the user wants to start
                 // the session
