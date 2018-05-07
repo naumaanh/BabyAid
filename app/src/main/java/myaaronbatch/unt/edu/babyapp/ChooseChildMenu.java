@@ -25,7 +25,7 @@ public class ChooseChildMenu extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_child_menu);
 
-        options = Settings.getInstance(this);
+        options = Settings.getInstance();
         //Child.addChild("Billy", "Bob", 2017, 10, 14);
         //Child.addChild("Bobby", "Bill", 2017, 10, 14);
         kids = Child.getChildren(this);

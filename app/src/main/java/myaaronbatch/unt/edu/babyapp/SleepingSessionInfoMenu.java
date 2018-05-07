@@ -96,7 +96,7 @@ public class SleepingSessionInfoMenu extends BaseActivity implements DatePickerD
         // Get current child and settings objects
 
         child = Child.getChild(this);
-        tempSettings = Settings.getInstance(this);
+        tempSettings = Settings.getInstance();
 
         // Get current session from child
         currentSession = (SleepingSession) child.sessionArray.get(index);
