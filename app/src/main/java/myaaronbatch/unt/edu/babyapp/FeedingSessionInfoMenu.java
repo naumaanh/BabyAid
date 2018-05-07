@@ -1,5 +1,6 @@
 package myaaronbatch.unt.edu.babyapp;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -10,8 +11,17 @@ import android.widget.EditText;
 import android.widget.NumberPicker;
 import android.widget.TextView;
 
+import com.thoughtworks.xstream.XStream;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
 import AppDataStructures.Child;
 import AppDataStructures.FeedingSession;
+import AppDataStructures.MedicalSession;
+import AppDataStructures.Session;
+import AppDataStructures.SleepingSession;
+import AppDataStructures.WasteSession;
 
 // Class which represents the info menu for the feeding session
 public class FeedingSessionInfoMenu extends BaseActivity
@@ -41,11 +51,13 @@ public class FeedingSessionInfoMenu extends BaseActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feeding_session_info_menu);
 
+        final Context ctx = this;
+
         // Hide keyboard initially
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
         // Get the child singleton
-        child = Child.getChild();
+        child = Child.getChild(this);
 
         // Get references to UI elements
         feedingMethodPicker = (NumberPicker) findViewById(R.id.feedingMethodPicker);
@@ -125,6 +137,8 @@ public class FeedingSessionInfoMenu extends BaseActivity
 
                 // Set the food amount in the amount var in the session
                 mySession.amount = foodAmountPicker.getValue();
+
+                Child.save(ctx);
 
                 // If we came here from the start or end session menu, then transition to the session recording menu
                 if(MenuName.equals("StartOrEndSessionMenu"))

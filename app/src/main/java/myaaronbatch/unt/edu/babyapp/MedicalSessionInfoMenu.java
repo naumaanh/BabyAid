@@ -1,5 +1,6 @@
 package myaaronbatch.unt.edu.babyapp;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -36,7 +37,9 @@ public class MedicalSessionInfoMenu extends BaseActivity {
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
-        child = Child.getChild();
+        final Context ctx = this;
+
+        child = Child.getChild(this);
 
         dosagePicker = (NumberPicker)findViewById(R.id.dosagePickr);
         wayPicker = (NumberPicker)findViewById(R.id.wayPickr);
@@ -103,6 +106,8 @@ public class MedicalSessionInfoMenu extends BaseActivity {
                 thisSession.way = givenArr[wayPicker.getValue()];
 
                 thisSession.type = medTypeText.getText().toString();
+
+                Child.save(ctx);
 
                 if(menuName.equals("StartOrEndSessionMenu"))
                 {

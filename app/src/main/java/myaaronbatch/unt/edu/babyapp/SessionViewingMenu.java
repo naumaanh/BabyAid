@@ -25,7 +25,7 @@ public class SessionViewingMenu extends BaseActivity
         setContentView(R.layout.activity_session_viewing_menu);
 
         blank = Settings.getInstance();
-        kid = Child.getChild();
+        kid = Child.getChild(this);
         SimpleDateFormat sdFormat;
         if (blank.is24HTime)
         {

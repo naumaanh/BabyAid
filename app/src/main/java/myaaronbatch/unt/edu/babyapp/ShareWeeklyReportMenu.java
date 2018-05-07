@@ -48,7 +48,7 @@ public class ShareWeeklyReportMenu extends BaseActivity {
         setContentView(R.layout.activity_share_weekly_report_menu);
 
         blank = Settings.getInstance();
-        kid = Child.getChild();
+        kid = Child.getChild(this);
         SimpleDateFormat sdFormat;
         if (blank.is24HTime)
         {

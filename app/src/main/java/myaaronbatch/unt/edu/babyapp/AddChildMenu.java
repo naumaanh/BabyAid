@@ -1,9 +1,12 @@
 package myaaronbatch.unt.edu.babyapp;
 
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -11,11 +14,22 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.thoughtworks.xstream.XStream;
+
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.text.DateFormat;
 import java.util.Calendar;
 
 import AppDataStructures.Child;
+import AppDataStructures.FeedingSession;
+import AppDataStructures.MedicalSession;
+import AppDataStructures.Session;
 import AppDataStructures.Settings;
+import AppDataStructures.SleepingSession;
+import AppDataStructures.WasteSession;
 
 public class AddChildMenu extends BaseActivity implements DatePickerDialog.OnDateSetListener
 {
@@ -31,7 +45,7 @@ public class AddChildMenu extends BaseActivity implements DatePickerDialog.OnDat
     Button changeBirthDateBtn; // Button which if pressed will bring up a date picker for changing the child's current birth date
 
     Button submitChildBtn; // Button which if pressed will save the child's newly inputted info and (if coming from the choose child menu) will add the new child to the
-    // child array list. If coming from the options menu, the button will save the already existing child's info
+    // child array list
 
     Button exitChildMenuBtn; // Button which if pressed will take the user back to the menu that they came from (without saving or adding a child)
 
@@ -51,8 +65,9 @@ public class AddChildMenu extends BaseActivity implements DatePickerDialog.OnDat
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_child_menu);
+        final Context ctx = this;
 
-        // Connect vars to UI elements
+        // Connect var to UI elements
 
         currentFirstNameTV = (TextView) findViewById(R.id.currentFirstNameTV);
         firstNameEditText = (EditText) findViewById(R.id.firstNameEditText);
@@ -99,6 +114,7 @@ public class AddChildMenu extends BaseActivity implements DatePickerDialog.OnDat
             currentBirthDateTV.setText(tempDate);
         }
 
+        /*
         // If user came from options menu, then set necessary vars
         else if(MenuName.equals("OptionsMenu"))
         {
@@ -124,6 +140,7 @@ public class AddChildMenu extends BaseActivity implements DatePickerDialog.OnDat
 
             currentBirthDateTV.setText(tempDate);
         }
+        */
 
         // When save first name button is clicked, init. the possible first name var and first name textview to the name entered into the first name edit text
         saveFirstNameBtn.setOnClickListener(new View.OnClickListener()
@@ -156,14 +173,14 @@ public class AddChildMenu extends BaseActivity implements DatePickerDialog.OnDat
             public void onClick(View view)
             {
                 // temporarily change style of datepicker
-                //tempSettings.styleInt = android.R.style.Theme_Material_Light_Dialog_Alert;
+                tempSettings.styleInt = android.R.style.Theme_Material_Light_Dialog_Alert;
 
                 DialogFragment DP = new DatePickerFragment();
 
                 DP.show(getSupportFragmentManager(), "date picker");
 
                 // Change style back to default
-                //tempSettings.styleInt = android.R.style.Theme_DeviceDefault_Light_Dialog_Alert;
+                tempSettings.styleInt = android.R.style.Theme_DeviceDefault_Light_Dialog_Alert;
             }
         });
 
@@ -200,7 +217,7 @@ public class AddChildMenu extends BaseActivity implements DatePickerDialog.OnDat
                     startActivity(goToChoosingChildMenuIntent);
                 }
 
-
+                /*
                 // If the user came from the options menu, then save the user inputted vars to the current child
                 else if(MenuName.equals("OptionsMenu"))
                 {
@@ -210,13 +227,11 @@ public class AddChildMenu extends BaseActivity implements DatePickerDialog.OnDat
 
                     currentChild.setDateOfBirth(year, month, day);
 
-                    System.out.println("First NAme: " + currentChild.getFirstName());
-                    System.out.println("Last Name: " + currentChild.getLastName());
-                    System.out.println("DOB: " + currentChild.getDateOfBirth().getTime());
-
                     // Send user back to options menu
-                    finish();
                 }
+                */
+
+                Child.save(ctx);
             }
         });
 
@@ -236,12 +251,12 @@ public class AddChildMenu extends BaseActivity implements DatePickerDialog.OnDat
                     startActivity(goToChoosingChildMenuIntent);
                 }
 
-                // If user came from the options menu, then go back to the options menu
+                /*
                 else if(MenuName.equals("OptionsMenu"))
                 {
                     // Go to options menu
-                    finish();
                 }
+                */
             }
         });
     }

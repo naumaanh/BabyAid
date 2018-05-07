@@ -1,5 +1,6 @@
 package myaaronbatch.unt.edu.babyapp;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -41,7 +42,9 @@ public class WasteSessionInfoMenu extends BaseActivity {
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
         // Get the child singleton
-        child = Child.getChild();
+        child = Child.getChild(this);
+
+        final Context ctx = this;
 
         // Get references to UI elements
         wasteTypePicker = (NumberPicker) findViewById(R.id.wasteTypePicker);
@@ -107,7 +110,7 @@ public class WasteSessionInfoMenu extends BaseActivity {
 
                 // Set waste type var in the session
                 mySession.consistency = consistencyTextBox.getText().toString();
-
+                Child.save(ctx);
                 // If we came here from the start or end session menu, then transition to the session recording menu
                 if(MenuName.equals("StartOrEndSessionMenu"))
                 {

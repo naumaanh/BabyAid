@@ -1,5 +1,6 @@
 package myaaronbatch.unt.edu.babyapp;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -44,6 +45,8 @@ public class StartOrEndSessionMenu extends BaseActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_or_end_session_menu);
+
+        final Context ctx = this;
 
         // Get references to the UI elements on the activity
         backBtn_SOESM = (Button) findViewById(R.id.backBtn_SOESM);
@@ -149,7 +152,7 @@ public class StartOrEndSessionMenu extends BaseActivity
 
                     // Show that the button has now been pressed
                     startPushed = true;
-
+                    Child.save(ctx);
                     // Test Code
                     /*
                     Integer i = child.sessionArray.size() - 1;
@@ -194,7 +197,7 @@ public class StartOrEndSessionMenu extends BaseActivity
 
                         // Set the current session to finished
                         session.isFinished = true;
-
+                        Child.save(ctx);
                         /*
                         System.out.println("\n");
                         // Test code
@@ -220,7 +223,7 @@ public class StartOrEndSessionMenu extends BaseActivity
 
                         // set the current session to finished
                         session.isFinished = true;
-
+                        Child.save(ctx);
                         /*
                         System.out.println();
                         // Test code

@@ -2,6 +2,7 @@ package myaaronbatch.unt.edu.babyapp;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
@@ -64,6 +65,8 @@ public class SleepingSessionInfoMenu extends BaseActivity implements DatePickerD
 
         // Connect variables to their UI counterparts
 
+        final Context ctx = this;
+
         currentStartDateTV = (TextView) findViewById(R.id.currentStartDateTV);
         currentStartTimeTV = (TextView) findViewById(R.id.currentStartTimeTV);
         currentEndDateTV = (TextView) findViewById(R.id.currentEndDateTV);
@@ -92,7 +95,7 @@ public class SleepingSessionInfoMenu extends BaseActivity implements DatePickerD
 
         // Get current child and settings objects
 
-        child = Child.getChild();
+        child = Child.getChild(this);
         tempSettings = Settings.getInstance();
 
         // Get current session from child
@@ -246,7 +249,7 @@ public class SleepingSessionInfoMenu extends BaseActivity implements DatePickerD
                 System.out.println("End Time: " + tCal.getTime());
 
                 /////////////// END OF TEST CODE
-
+                Child.save(ctx);
                 // Take the user to the current child's main menu
                 startActivity(goToMainMenuIntent);
             }
