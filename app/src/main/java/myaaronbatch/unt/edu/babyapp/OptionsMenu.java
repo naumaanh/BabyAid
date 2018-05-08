@@ -12,7 +12,7 @@ import AppDataStructures.Settings;
 
 public class OptionsMenu extends BaseActivity
 {
-     RadioGroup timeSystemRadioGroup; // Radiogroup of radio buttons for "time system"
+    RadioGroup timeSystemRadioGroup; // Radiogroup of radio buttons for "time system"
     RadioGroup colorThemeRadioGroup; // Radio group of radio buttons for "color theme"
     RadioButton radioButton; // radio button variable which will represent the radio button that was just pressed
 
