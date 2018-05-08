@@ -4,13 +4,18 @@ import android.content.Context;
 import android.content.res.AssetManager;
 import android.os.Environment;
 
+import com.dropbox.core.DbxException;
+import com.dropbox.core.v2.DbxClientV2;
+import com.dropbox.core.v2.files.WriteMode;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
@@ -117,6 +122,9 @@ public class Child
         try {
             AssetManager assetManager = context.getAssets();
             File f = new File(context.getFilesDir() + File.separator + "children.xml");
+            DbxClientV2 dbxCli = DropboxClient.getClient("SuPdkgik1dkAAAAAAAAPPyGRHSZzW9SQLjPoO2pBB5rp-0LaB21i3Pq9vwu3INro");
+            OutputStream os = new FileOutputStream(f);
+            dbxCli.files().download("/children.xml").download(os);
             if (f.exists())
             {
                 s = new Scanner(f).useDelimiter("\\A");
@@ -129,6 +137,8 @@ public class Child
             xml = s.hasNext() ? s.next() : "";
             xstream = new XStream();
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (DbxException e) {
             e.printStackTrace();
         }
         xstream.processAnnotations(Child.class);
@@ -166,7 +176,12 @@ public class Child
             CArr arr = new CArr(children);
             pw.print(xstream.toXML(arr));
             pw.close();
+            InputStream is = new FileInputStream(file);
+            DbxClientV2 dbxCli = DropboxClient.getClient("SuPdkgik1dkAAAAAAAAPPuDCe6e2CPvs4zkl0i8V-QJEqoIPEGppa8SfBmmOQQqn");
+            dbxCli.files().uploadBuilder("/children.xml").uploadAndFinish(is);
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (DbxException e) {
             e.printStackTrace();
         }
     }
