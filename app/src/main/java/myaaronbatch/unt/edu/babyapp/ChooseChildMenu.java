@@ -1,5 +1,6 @@
 package myaaronbatch.unt.edu.babyapp;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -24,11 +25,12 @@ public class ChooseChildMenu extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_child_menu);
-
+        final Context ctx = this;
         options = Settings.getInstance();
         //Child.addChild("Billy", "Bob", 2017, 10, 14);
         //Child.addChild("Bobby", "Bill", 2017, 10, 14);
         kids = Child.getChildren(this);
+        options.numberOfChildren = kids.size();
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
 
         rmvBtn = findViewById(R.id.removeChildBtn);
@@ -70,7 +72,7 @@ public class ChooseChildMenu extends BaseActivity {
                 @Override
                 public void onClick(View view) {
                     options.childIndex = view.getId();
-
+                    options.save(ctx);
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent);
                 }
