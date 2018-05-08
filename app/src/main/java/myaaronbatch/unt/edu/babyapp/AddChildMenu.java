@@ -114,12 +114,12 @@ public class AddChildMenu extends BaseActivity implements DatePickerDialog.OnDat
             currentBirthDateTV.setText(tempDate);
         }
 
-        /*
+
         // If user came from options menu, then set necessary vars
         else if(MenuName.equals("OptionsMenu"))
         {
             // Get current child user is on
-            currentChild = Child.getChild();
+            currentChild = Child.getChild(this);
 
             // Init. temp birth date variable with child's current birth date
             possibleBirthDate = (Calendar) currentChild.getDateOfBirth().clone();
@@ -140,7 +140,7 @@ public class AddChildMenu extends BaseActivity implements DatePickerDialog.OnDat
 
             currentBirthDateTV.setText(tempDate);
         }
-        */
+
 
         // When save first name button is clicked, init. the possible first name var and first name textview to the name entered into the first name edit text
         saveFirstNameBtn.setOnClickListener(new View.OnClickListener()
@@ -217,7 +217,7 @@ public class AddChildMenu extends BaseActivity implements DatePickerDialog.OnDat
                     startActivity(goToChoosingChildMenuIntent);
                 }
 
-                /*
+
                 // If the user came from the options menu, then save the user inputted vars to the current child
                 else if(MenuName.equals("OptionsMenu"))
                 {
@@ -228,8 +228,13 @@ public class AddChildMenu extends BaseActivity implements DatePickerDialog.OnDat
                     currentChild.setDateOfBirth(year, month, day);
 
                     // Send user back to options menu
+                    Intent intent = new Intent(getApplicationContext(), OptionsMenu.class);
+
+                    Child.save(ctx);
+
+                    startActivity(intent);
                 }
-                */
+
 
                 Child.save(ctx);
             }
