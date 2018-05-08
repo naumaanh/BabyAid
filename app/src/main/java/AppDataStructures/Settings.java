@@ -27,9 +27,9 @@ public class Settings {
     //@XStreamAlias("ISMETRIC")
     public boolean isMetric;
     //@XStreamAlias("CINDEX")
-    public int childIndex = 0;
+    public int childIndex;
     //@XStreamAlias("NUMCHILDREN")
-    public Integer numberOfChildren = 0;
+    public Integer numberOfChildren;
     //@XStreamAlias("STYLEINT")
     public int styleInt;
 
