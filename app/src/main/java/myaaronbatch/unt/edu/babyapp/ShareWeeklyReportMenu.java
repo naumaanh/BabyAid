@@ -483,7 +483,7 @@ public class ShareWeeklyReportMenu extends BaseActivity {
                         body.append("\nFood Method " + analytics(foodMethodAn).getKey()
                                 + ", and it was logged "
                                 + analytics(foodMethodAn).getValue()
-                                + " times. " + );
+                                + " times. ");
                     }
                     if (foodTypeAn[0] == null )
                         body.append("\nFood Type: No meaningful data logged. ");
