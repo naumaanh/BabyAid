@@ -20,9 +20,6 @@
             android:configChanges="orientation|keyboard"
             android:launchMode="singleTask">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <data android:scheme="db-6f1nbviuxhi7slb" />
-                <category android:name="android.intent.category.LAUNCHER" />
 
                 <!-- Insert your app key after “db-  ...” -->
                 <data android:scheme="db-6f1nbviuxhi7slb" />

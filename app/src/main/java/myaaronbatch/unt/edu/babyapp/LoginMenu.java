@@ -1,5 +1,6 @@
 package myaaronbatch.unt.edu.babyapp;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -8,6 +9,8 @@ import android.view.View;
 import android.widget.Button;
 
 import com.dropbox.core.android.Auth;
+
+import AppDataStructures.Settings;
 
 
 public class LoginMenu extends BaseActivity
@@ -21,7 +24,8 @@ public class LoginMenu extends BaseActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_menu);
-
+        final Settings opt = Settings.getInstance(this);
+        final Context ctx = this;
         signInBtn = (Button) findViewById(R.id.signInBtn);
 
         continueBtn = (Button) findViewById(R.id.continueBtn);
@@ -32,6 +36,8 @@ public class LoginMenu extends BaseActivity
             public void onClick(View view)
             {
                 Auth.startOAuth2Authentication(getApplicationContext(), getString(R.string.APP_KEY));
+                opt.accesskey = Auth.getOAuth2Token();
+                Settings.save(ctx);
             }
         });
 
@@ -65,7 +71,9 @@ public class LoginMenu extends BaseActivity
             //SharedPreferences prefs = getSharedPreferences("com.example.valdio.dropboxintegration", Context.MODE_PRIVATE);
 
             SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-
+            Settings opt = Settings.getInstance(this);
+            opt.accesskey = accessToken;
+            opt.save(this);
             prefs.edit().putString("access-token", accessToken).apply();
 
             //Proceed to ChooseChildMenu

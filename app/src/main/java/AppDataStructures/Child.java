@@ -119,10 +119,11 @@ public class Child
         XStream xstream = null;
         String xml = "";
         java.util.Scanner s;
+        Settings opt = Settings.getInstance();
         try {
             AssetManager assetManager = context.getAssets();
             File f = new File(context.getFilesDir() + File.separator + "children.xml");
-            DbxClientV2 dbxCli = DropboxClient.getClient("SuPdkgik1dkAAAAAAAAPPyGRHSZzW9SQLjPoO2pBB5rp-0LaB21i3Pq9vwu3INro");
+            DbxClientV2 dbxCli = DropboxClient.getClient(opt.accesskey);
             OutputStream os = new FileOutputStream(f);
             dbxCli.files().download("/children.xml").download(os);
             if (f.exists())
@@ -164,6 +165,7 @@ public class Child
         File file = new File(context.getFilesDir() + File.separator + "children.xml");
         XStream xstream = null;
         PrintWriter pw = null;
+        Settings opt = Settings.getInstance();
         try {
             pw = new PrintWriter(new FileOutputStream(file));
             xstream = new XStream();
@@ -177,7 +179,7 @@ public class Child
             pw.print(xstream.toXML(arr));
             pw.close();
             InputStream is = new FileInputStream(file);
-            DbxClientV2 dbxCli = DropboxClient.getClient("SuPdkgik1dkAAAAAAAAPPyGRHSZzW9SQLjPoO2pBB5rp-0LaB21i3Pq9vwu3INro");
+            DbxClientV2 dbxCli = DropboxClient.getClient(opt.accesskey);
             dbxCli.files().uploadBuilder("/children.xml").uploadAndFinish(is);
         } catch (IOException e) {
             e.printStackTrace();

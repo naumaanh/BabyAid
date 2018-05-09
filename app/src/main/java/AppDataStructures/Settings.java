@@ -32,6 +32,7 @@ public class Settings {
     public Integer numberOfChildren = 0;
     //@XStreamAlias("STYLEINT")
     public int styleInt;
+    public String accesskey;
 
     public static Settings instance;
     private Settings() {

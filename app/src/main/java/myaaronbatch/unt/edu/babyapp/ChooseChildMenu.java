@@ -29,7 +29,7 @@ public class ChooseChildMenu extends BaseActivity {
         options = Settings.getInstance();
         //Child.addChild("Billy", "Bob", 2017, 10, 14);
         //Child.addChild("Bobby", "Bill", 2017, 10, 14);
-        kids = Child.getChildren(this);
+        kids = Child.getChildren();
         options.numberOfChildren = kids.size();
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
 
