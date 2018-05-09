@@ -3,10 +3,8 @@ package myaaronbatch.unt.edu.babyapp;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -14,22 +12,11 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.thoughtworks.xstream.XStream;
-
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
 import java.text.DateFormat;
 import java.util.Calendar;
 
 import AppDataStructures.Child;
-import AppDataStructures.FeedingSession;
-import AppDataStructures.MedicalSession;
-import AppDataStructures.Session;
 import AppDataStructures.Settings;
-import AppDataStructures.SleepingSession;
-import AppDataStructures.WasteSession;
 
 public class AddChildMenu extends BaseActivity implements DatePickerDialog.OnDateSetListener
 {
@@ -114,12 +101,12 @@ public class AddChildMenu extends BaseActivity implements DatePickerDialog.OnDat
             currentBirthDateTV.setText(tempDate);
         }
 
-        /*
+
         // If user came from options menu, then set necessary vars
         else if(MenuName.equals("OptionsMenu"))
         {
             // Get current child user is on
-            currentChild = Child.getChild();
+            currentChild = Child.getChild(this);
 
             // Init. temp birth date variable with child's current birth date
             possibleBirthDate = (Calendar) currentChild.getDateOfBirth().clone();
@@ -140,7 +127,7 @@ public class AddChildMenu extends BaseActivity implements DatePickerDialog.OnDat
 
             currentBirthDateTV.setText(tempDate);
         }
-        */
+
 
         // When save first name button is clicked, init. the possible first name var and first name textview to the name entered into the first name edit text
         saveFirstNameBtn.setOnClickListener(new View.OnClickListener()
@@ -173,14 +160,14 @@ public class AddChildMenu extends BaseActivity implements DatePickerDialog.OnDat
             public void onClick(View view)
             {
                 // temporarily change style of datepicker
-                tempSettings.styleInt = android.R.style.Theme_Material_Light_Dialog_Alert;
+                //tempSettings.styleInt = android.R.style.Theme_Material_Light_Dialog_Alert;
 
                 DialogFragment DP = new DatePickerFragment();
 
                 DP.show(getSupportFragmentManager(), "date picker");
 
                 // Change style back to default
-                tempSettings.styleInt = android.R.style.Theme_DeviceDefault_Light_Dialog_Alert;
+                //tempSettings.styleInt = android.R.style.Theme_DeviceDefault_Light_Dialog_Alert;
             }
         });
 
@@ -217,7 +204,7 @@ public class AddChildMenu extends BaseActivity implements DatePickerDialog.OnDat
                     startActivity(goToChoosingChildMenuIntent);
                 }
 
-                /*
+
                 // If the user came from the options menu, then save the user inputted vars to the current child
                 else if(MenuName.equals("OptionsMenu"))
                 {
@@ -228,8 +215,13 @@ public class AddChildMenu extends BaseActivity implements DatePickerDialog.OnDat
                     currentChild.setDateOfBirth(year, month, day);
 
                     // Send user back to options menu
+                    Intent intent = new Intent(getApplicationContext(), OptionsMenu.class);
+
+                    Child.save(ctx);
+
+                    startActivity(intent);
                 }
-                */
+
 
                 Child.save(ctx);
             }
@@ -251,12 +243,15 @@ public class AddChildMenu extends BaseActivity implements DatePickerDialog.OnDat
                     startActivity(goToChoosingChildMenuIntent);
                 }
 
-                /*
+
                 else if(MenuName.equals("OptionsMenu"))
                 {
                     // Go to options menu
+
+                    Intent goToOptionsMenuIntent = new Intent(getApplicationContext(), OptionsMenu.class);
+
+                    startActivity(goToOptionsMenuIntent);
                 }
-                */
             }
         });
     }
